@@ -20,13 +20,13 @@
   <link rel="icon" type="image/png" href="/AgriTech/images/logo.png" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="../static/style.css" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="theme.css" />
 
   <!-- Font Awesome -->
   <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     rel="stylesheet"
   />
   
@@ -398,6 +398,8 @@
     .container *:not(.btn-green):not(select) {
       color: inherit !important;
     }
+
+
 </style>
 </head>
 
@@ -889,6 +891,7 @@
     <script src="main.js"></script>
   <script src="theme.js"></script>
   <script src="logout-handler.js"></script>
+  <script src="voice-assist.js"></script>
 
     <button class="scroll-to-top" id="scrollToTop" title="Back to top">
     <i class="fas fa-arrow-up"></i>
@@ -974,6 +977,94 @@
   <script>
         // Logout functionality is now handled by logout-handler.js
     </script>
+
+<!-- Enhanced Voice Assistant with Multi-Language Support -->
+<div class="voice-assistant-container" id="voiceAssistantContainer">
+    <div class="language-selector" id="languageSelector">
+      <button class="lang-btn" id="langToggle" title="Select Language">
+        <i class="fas fa-language"></i>
+        <span class="lang-text">EN</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-option" data-lang="en-IN" data-code="EN">
+          <span class="flag">🇮🇳</span>
+          <span>English</span>
+        </div>
+        <div class="lang-option" data-lang="hi-IN" data-code="हि">
+          <span class="flag">🇮🇳</span>
+          <span>हिंदी</span>
+        </div>
+        <div class="lang-option" data-lang="bn-IN" data-code="বা">
+          <span class="flag">🇮🇳</span>
+          <span>বাংলা</span>
+        </div>
+        <div class="lang-option" data-lang="te-IN" data-code="తె">
+          <span class="flag">🇮🇳</span>
+          <span>తెలుగు</span>
+        </div>
+        <div class="lang-option" data-lang="mr-IN" data-code="म">
+          <span class="flag">🇮🇳</span>
+          <span>मराठी</span>
+        </div>
+        <div class="lang-option" data-lang="ta-IN" data-code="த">
+          <span class="flag">🇮🇳</span>
+          <span>தமிழ்</span>
+        </div>
+        <div class="lang-option" data-lang="gu-IN" data-code="ગુ">
+          <span class="flag">🇮🇳</span>
+          <span>ગુજરાતી</span>
+        </div>
+        <div class="lang-option" data-lang="kn-IN" data-code="ಕ">
+          <span class="flag">🇮🇳</span>
+          <span>ಕನ್ನಡ</span>
+        </div>
+        <div class="lang-option" data-lang="ml-IN" data-code="മ">
+          <span class="flag">🇮🇳</span>
+          <span>മലയാളം</span>
+        </div>
+        <div class="lang-option" data-lang="pa-IN" data-code="ਪ">
+          <span class="flag">🇮🇳</span>
+          <span>ਪੰਜਾਬੀ</span>
+        </div>
+        <div class="lang-option" data-lang="or-IN" data-code="ଓ">
+          <span class="flag">🇮🇳</span>
+          <span>ଓଡ଼ିଆ</span>
+        </div>
+        <div class="lang-option" data-lang="as-IN" data-code="অ">
+          <span class="flag">🇮🇳</span>
+          <span>অসমীয়া</span>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+    <button class="voice-assistant" id="voiceAssistant" title="Voice Assistant - Click and speak">
+      <div class="voice-waves">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+      </div>
+      <i class="fas fa-microphone" id="voiceIcon"></i>
+      <span class="voice-pulse"></span>
+    </button>
+    </div>
+    <div class="voice-status" id="voiceStatus">
+      <span class="status-text">Click to speak</span>
+    </div>
+</div>
 
 <!-- Google Translate Integration (All Indian Languages) -->
 <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
