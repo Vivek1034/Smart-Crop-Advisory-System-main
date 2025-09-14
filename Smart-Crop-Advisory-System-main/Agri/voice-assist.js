@@ -388,26 +388,39 @@ function initializeLanguageSelector() {
     });
 }
 
+// Show/Hide Password functionality
+function initializePasswordToggle() {
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const passwordInput = document.getElementById('password');
+    const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+    
+    if (togglePasswordBtn && passwordInput && togglePasswordIcon) {
+        togglePasswordBtn.addEventListener('click', function() {
+            const isPasswordVisible = passwordInput.type === 'text';
+            
+            if (isPasswordVisible) {
+                // Hide password
+                passwordInput.type = 'password';
+                togglePasswordIcon.className = 'fas fa-eye';
+                togglePasswordBtn.classList.remove('active');
+                togglePasswordBtn.title = 'Show Password';
+            } else {
+                // Show password
+                passwordInput.type = 'text';
+                togglePasswordIcon.className = 'fas fa-eye-slash';
+                togglePasswordBtn.classList.add('active');
+                togglePasswordBtn.title = 'Hide Password';
+            }
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize language selector
     initializeLanguageSelector();
     
-    // Login page functionality
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-    const voiceEmailBtn = document.getElementById('voiceEmailBtn');
-    const voicePasswordBtn = document.getElementById('voicePasswordBtn');
-
-    if (voiceEmailBtn) {
-        voiceEmailBtn.addEventListener('click', function() {
-            startRecognition(emailInput, getTranslation('opening') + 'email address');
-        });
-    }
-    if (voicePasswordBtn) {
-        voicePasswordBtn.addEventListener('click', function() {
-            startRecognition(passwordInput, getTranslation('opening') + 'password');
-        });
-    }
+    // Initialize password toggle
+    initializePasswordToggle();
     
     // Main app voice assistant
     const voiceAssistant = document.getElementById('voiceAssistant');

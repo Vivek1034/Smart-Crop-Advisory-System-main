@@ -115,3 +115,134 @@
     color: #388e3c;
     text-decoration: underline;
 }
+
+/* Enhanced Password Input Container */
+.password-input-container {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.password-input-container input {
+    width: 100%;
+    padding: 10px;
+    padding-right: 45px; /* Space for toggle button only */
+    border: 1px solid #bdbdbd;
+    border-radius: 6px;
+    font-size: 16px;
+    background: #f9fbe7;
+    transition: border 0.2s;
+}
+
+.password-input-container input:focus {
+    border-color: #2e7d32;
+    outline: none;
+}
+
+/* Toggle Password Button */
+.toggle-password-btn {
+    position: absolute;
+    right: 12px; /* Position at the right edge */
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(249, 251, 231, 0.8); /* Match input background #f9fbe7 with transparency */
+    border: none; /* Remove border completely */
+    cursor: pointer;
+    color: #64748b;
+    padding: 0;
+    border-radius: 6px; /* Match input border radius */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    box-shadow: none; /* Remove shadow for seamless blend */
+    backdrop-filter: none; /* Remove backdrop filter */
+    -webkit-backdrop-filter: none;
+    opacity: 0;
+    animation: slideInFade 0.6s ease-out 0.3s forwards;
+}
+
+/* Entrance Animation */
+@keyframes slideInFade {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) translateX(10px) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0) scale(1);
+    }
+}
+
+.toggle-password-btn:hover {
+    background: rgba(46, 125, 50, 0.1); /* Subtle green tint on input background */
+    color: #2e7d32; /* Match input focus color */
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: none; /* Keep it seamless */
+}
+
+.toggle-password-btn:focus {
+    outline: none;
+    box-shadow: none; /* Keep seamless focus */
+}
+
+.toggle-password-btn:active {
+    transform: translateY(-50%) scale(0.95);
+    box-shadow: none;
+    background: rgba(46, 125, 50, 0.15); /* Slightly darker green on press */
+}
+
+.toggle-password-btn i {
+    font-size: 1.2em;
+    pointer-events: none; /* Ensure clicks go to the button, not the icon */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    transform-origin: center;
+}
+
+/* Icon animations */
+.toggle-password-btn:hover i {
+    transform: scale(1.05);
+    filter: none; /* Remove glow for seamless blend */
+}
+
+.toggle-password-btn.active i {
+    color: #2e7d32; /* Match button active color */
+}
+
+.toggle-password-btn:active i {
+    transform: scale(0.95);
+}
+
+/* Active state for show password */
+.toggle-password-btn.active {
+    background: rgba(46, 125, 50, 0.2); /* Blend with input background */
+    color: #2e7d32; /* Match input focus color */
+    box-shadow: none; /* Keep seamless */
+}
+
+.toggle-password-btn.active:hover {
+    color: #1b5e20; /* Darker green on hover */
+    background: rgba(46, 125, 50, 0.25); /* Slightly more visible on hover */
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: none; /* Keep seamless */
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .password-input-container input {
+        padding-right: 40px;
+    }
+    
+    .toggle-password-btn {
+        right: 8px;
+        font-size: 1em;
+        padding: 4px;
+    }
+}

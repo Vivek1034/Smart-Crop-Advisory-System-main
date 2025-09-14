@@ -14,6 +14,65 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+
+// Password Toggle Functionality
+function initializePasswordToggle() {
+    const togglePasswordBtn = document.getElementById('togglePasswordBtn');
+    const passwordInput = document.getElementById('password');
+    const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+    
+    console.log('Initializing password toggle...');
+    console.log('Elements found:', {
+        button: !!togglePasswordBtn,
+        input: !!passwordInput,
+        icon: !!togglePasswordIcon
+    });
+    
+    if (togglePasswordBtn && passwordInput && togglePasswordIcon) {
+        togglePasswordBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            console.log('Toggle clicked - current type:', passwordInput.type);
+            
+            if (passwordInput.type === 'password') {
+                // Show password
+                passwordInput.type = 'text';
+                togglePasswordIcon.classList.remove('fa-eye');
+                togglePasswordIcon.classList.add('fa-eye-slash');
+                togglePasswordBtn.classList.add('active');
+                togglePasswordBtn.title = 'Hide Password';
+                console.log('Password is now visible');
+            } else {
+                // Hide password
+                passwordInput.type = 'password';
+                togglePasswordIcon.classList.remove('fa-eye-slash');
+                togglePasswordIcon.classList.add('fa-eye');
+                togglePasswordBtn.classList.remove('active');
+                togglePasswordBtn.title = 'Show Password';
+                console.log('Password is now hidden');
+            }
+        });
+        
+        console.log('Password toggle initialized successfully!');
+    } else {
+        console.error('Could not find required elements for password toggle');
+    }
+}
+
+// Initialize password toggle when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing password toggle...');
+    initializePasswordToggle();
+});
+
+// Also try when window is fully loaded as backup
+window.addEventListener('load', function() {
+    console.log('Window loaded, backup initialization...');
+    // Small delay to ensure everything is rendered
+    setTimeout(initializePasswordToggle, 100);
+});
+
 // inputs
 
 
