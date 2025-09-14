@@ -994,3 +994,294 @@
     text-align: center;
   }
 }
+
+/* Enhanced Voice Assistant Styles */
+.voice-assistant-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.voice-assistant {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981, #34d399, #6ee7b7);
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  box-shadow: 
+    0 8px 32px rgba(16, 185, 129, 0.4),
+    0 4px 16px rgba(16, 185, 129, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.voice-assistant::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #10b981, #34d399, #6ee7b7, #10b981);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.voice-assistant:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 
+    0 16px 48px rgba(16, 185, 129, 0.6),
+    0 8px 24px rgba(16, 185, 129, 0.4),
+    inset 0 2px 8px rgba(255, 255, 255, 0.3);
+  background: linear-gradient(135deg, #059669, #10b981, #34d399);
+}
+
+.voice-assistant:hover::before {
+  opacity: 1;
+  animation: rotate-gradient 2s linear infinite;
+}
+
+.voice-assistant.listening {
+  background: linear-gradient(135deg, #ef4444, #f87171, #fca5a5);
+  animation: listening-pulse 1.2s ease-in-out infinite;
+  box-shadow: 
+    0 8px 32px rgba(239, 68, 68, 0.5),
+    0 4px 16px rgba(239, 68, 68, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+}
+
+.voice-assistant.listening::before {
+  background: linear-gradient(45deg, #ef4444, #f87171, #fca5a5, #ef4444);
+  opacity: 1;
+  animation: rotate-gradient 1s linear infinite;
+}
+
+.voice-assistant.processing {
+  background: linear-gradient(135deg, #3b82f6, #60a5fa, #93c5fd);
+  animation: processing-spin 1s linear infinite;
+}
+
+/* Voice Icon Animations */
+#voiceIcon {
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.voice-assistant.listening #voiceIcon {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+/* Voice Waves Animation */
+.voice-waves {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.voice-assistant.listening .voice-waves {
+  opacity: 1;
+}
+
+.wave {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: voice-wave 1.5s ease-out infinite;
+}
+
+.wave1 {
+  width: 70px;
+  height: 70px;
+  top: 15px;
+  left: 15px;
+  animation-delay: 0s;
+}
+
+.wave2 {
+  width: 85px;
+  height: 85px;
+  top: 7.5px;
+  left: 7.5px;
+  animation-delay: 0.3s;
+}
+
+.wave3 {
+  width: 100px;
+  height: 100px;
+  top: 0;
+  left: 0;
+  animation-delay: 0.6s;
+}
+
+/* Voice Status Indicator */
+.voice-status {
+  background: rgba(16, 185, 129, 0.95);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+  text-align: center;
+  min-width: 120px;
+}
+
+.voice-status.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.voice-status.listening {
+  background: rgba(239, 68, 68, 0.95);
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+}
+
+.voice-status.processing {
+  background: rgba(59, 130, 246, 0.95);
+  box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Enhanced Pulse Animation */
+.voice-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.4), transparent 70%);
+  animation: enhanced-pulse 3s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Keyframe Animations */
+@keyframes listening-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 8px 32px rgba(239, 68, 68, 0.5),
+      0 4px 16px rgba(239, 68, 68, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 
+      0 12px 48px rgba(239, 68, 68, 0.7),
+      0 6px 24px rgba(239, 68, 68, 0.6);
+  }
+}
+
+@keyframes processing-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes voice-wave {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+@keyframes enhanced-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-gradient {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .voice-assistant-container {
+    bottom: 15px;
+    right: 15px;
+    gap: 10px;
+  }
+  
+  .voice-assistant {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .voice-status {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    min-width: 100px;
+  }
+  
+  .voice-waves {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .wave1 { width: 60px; height: 60px; top: 10px; left: 10px; }
+  .wave2 { width: 70px; height: 70px; top: 5px; left: 5px; }
+  .wave3 { width: 80px; height: 80px; top: 0; left: 0; }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .voice-assistant {
+  background: linear-gradient(135deg, #22c55e, #4ade80, #86efac);
+  box-shadow: 
+    0 8px 32px rgba(34, 197, 94, 0.4),
+    0 4px 16px rgba(34, 197, 94, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .voice-assistant:hover {
+  background: linear-gradient(135deg, #16a34a, #22c55e, #4ade80);
+  box-shadow: 
+    0 16px 48px rgba(34, 197, 94, 0.6),
+    0 8px 24px rgba(34, 197, 94, 0.4),
+    inset 0 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .voice-status {
+  background: rgba(34, 197, 94, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

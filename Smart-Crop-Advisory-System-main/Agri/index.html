@@ -268,6 +268,7 @@
     rel="stylesheet" />
   <link href="style.css" rel="stylesheet" />
   <link href="hero-styles.css" rel="stylesheet" />
+  <script src="voice-assist.js"></script>
   
 </head>
 
@@ -426,6 +427,22 @@
   <button class="scroll-to-top" id="scrollToTop" title="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
+
+  <!-- Enhanced Voice Assistant -->
+  <div class="voice-assistant-container" id="voiceAssistantContainer">
+    <button class="voice-assistant" id="voiceAssistant" title="Voice Assistant - Click and speak">
+      <div class="voice-waves">
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+      </div>
+      <i class="fas fa-microphone" id="voiceIcon"></i>
+      <span class="voice-pulse"></span>
+    </button>
+    <div class="voice-status" id="voiceStatus">
+      <span class="status-text">Click to speak</span>
+    </div>
+  </div>
 
   <script>
     // Theme toggle functionality
