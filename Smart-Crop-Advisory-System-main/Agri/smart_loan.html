@@ -373,23 +373,7 @@
         <i class="fas fa-arrow-left"></i> Back to Dashboard
     </a>
 
-    <!-- Language Selector -->
-    <div class="language-selector">
-        <select id="languageSelect">
-            <option value="en">English</option>
-            <option value="hi">हिन्दी (Hindi)</option>
-            <option value="bn">বাংলা (Bengali)</option>
-            <option value="te">తెలుగు (Telugu)</option>
-            <option value="mr">मराठी (Marathi)</option>
-            <option value="ta">தமிழ் (Tamil)</option>
-            <option value="gu">ગુજરાતી (Gujarati)</option>
-            <option value="kn">ಕನ್ನಡ (Kannada)</option>
-            <option value="ml">മലയാളം (Malayalam)</option>
-            <option value="or">ଓଡ଼ିଆ (Odia)</option>
-            <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
-            <option value="ur">اردو (Urdu)</option>
-        </select>
-    </div>
+    <!-- Top language selector removed as requested -->
 
     <div class="container">
         <!-- Header -->
@@ -580,8 +564,7 @@
         const lang = urlParams.get('lang') || 'en';
         const preselectedType = urlParams.get('type');
 
-        // Set language selector
-        document.getElementById('languageSelect').value = lang;
+    // Language selector removed, skip setting value
 
         // Auto-select loan type if passed from dashboard
         if (preselectedType) {
@@ -1049,9 +1032,27 @@
         });
     </script>
 
-    <!-- Google Translate Integration (All Indian Languages) -->
-    <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
 
+        <!-- Enhanced Voice Assistant with Multi-Language Support -->
+    <div class="voice-assistant-container" id="voiceAssistantContainer">
+        <button class="voice-assistant" id="voiceAssistant" title="Voice Assistant - Click and speak">
+            <div class="voice-waves">
+                <div class="wave wave1"></div>
+                <div class="wave wave2"></div>
+                <div class="wave wave3"></div>
+            </div>
+            <i class="fas fa-microphone" id="voiceIcon"></i>
+            <span class="voice-pulse"></span>
+        </button>
+        <div class="voice-status" id="voiceStatus">
+            <span class="status-text">Click to speak</span>
+        </div>
+    </div>
+
+        <!-- Google Translate Integration (All Indian Languages) -->
+        <div id="google_translate_element" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
+
+    <script src="voice-assist.js"></script>
     <script type="text/javascript">
       function googleTranslateElementInit() {
         new google.translate.TranslateElement(

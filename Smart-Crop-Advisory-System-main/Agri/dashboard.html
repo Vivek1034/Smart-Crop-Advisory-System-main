@@ -1281,11 +1281,7 @@
           <p>Get step-by-step assistance for applying for agricultural loans.</p>
           <div style="margin-top: 20px;">
             <a href="smart_loan.html" class="btn-green" id="goLoanGuide" style="margin-right: 20px;">Go to Smart Loan Guide</a>
-            <label for="languageSelect">Language:</label>
-            <select id="languageSelect" class="language-select">
-              <option value="en">English</option>
-              <option value="hi">हिन्दी</option>
-            </select>
+            <!-- Language selection removed as requested -->
           </div>
           
         </section>
@@ -1294,16 +1290,10 @@
       <script>
         document.getElementById('goLoanGuide').addEventListener('click', function (event) {
           event.preventDefault();
-          
-          // Get language selection with fallback
-          const languageSelect = document.getElementById('languageSelect');
-          const lang = languageSelect ? languageSelect.value : 'en';
-          
           // Add loading state
           const originalText = this.textContent;
           this.textContent = 'Loading...';
           this.disabled = true;
-          
           // Show confirmation before redirect
           Swal.fire({
             title: '🌾 Smart Loan Guide',
@@ -1335,7 +1325,7 @@
             
             if (result.isConfirmed) {
               try {
-                window.location.href = `smart_loan.html?lang=${lang}`;
+                window.location.href = 'smart_loan.html';
               } catch (error) {
                 Swal.fire({
                   title: 'Navigation Error',
@@ -1389,8 +1379,8 @@
                 }
               }).then((result) => {
                 if (result.isConfirmed) {
-                  // Redirect to smart loan page with loan type and language
-                  window.location.href = `smart_loan.html?lang=${lang}&type=${loanType}`;
+                  // Redirect to smart loan page with loan type only
+                  window.location.href = `smart_loan.html?type=${loanType}`;
                 }
               });
             });
