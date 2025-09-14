@@ -1009,7 +1009,7 @@
     <nav>
       <ul>
         <li>
-          <a href="Crop Recommendation/templates/index.html">🌱 Crop Recommendation</a>
+          <a href="https://crop-recommendation-1-3n81.onrender.com/" onclick="handleCropRecommendationClick(event)">🌱 Crop Recommendation</a>
         </li>
         <li>
           <a href="Crop Yield Prediction/templates/index.html">📊 Yield Prediction</a>
@@ -1044,16 +1044,16 @@
 
     <!-- Grid Section (Cards) -->
     <section class="grid-container">
-      <a href="Crop Recommendation/templates/index.html" class="grid-item">
+      <a href="https://crop-recommendation-1-3n81.onrender.com/" class="grid-item" onclick="handleCropRecommendationClick(event)">
         <img src="images/crop.avif" alt="Crop Recommendation" loading="lazy" />
         <div class="grid-item-content">
           <h3>Crop Recommendation</h3>
           <p>
             Find the best crop to cultivate based on your soil and weather
-            conditions using advanced AI algorithms.
+            conditions using advanced AI algorithms powered by machine learning.
           </p>
           <div class="grid-item-footer">
-            <span class="feature-badge">AI Powered</span>
+            <span class="feature-badge">Web App</span>
             <span class="arrow-icon">→</span>
           </div>
         </div>
@@ -1865,6 +1865,75 @@
       }
     `;
     document.head.appendChild(style);
+
+    // Handle crop recommendation navigation
+    function handleCropRecommendationClick(event) {
+      event.preventDefault();
+      
+      // Store current dashboard URL
+      localStorage.setItem('dashboardURL', window.location.href);
+      
+      // Show navigation instructions
+      Swal.fire({
+        title: '🌾 Crop Recommendation Tool',
+        html: `
+          <div style="text-align: center; padding: 20px;">
+            <div style="font-size: 3rem; margin-bottom: 20px;">🚀</div>
+            <p style="font-size: 16px; color: #6b7280; margin-bottom: 20px; line-height: 1.6;">
+              You're about to access our AI-powered Crop Recommendation tool!
+            </p>
+            <div style="background: linear-gradient(135deg, #dcfce7, #bbf7d0); padding: 15px; border-radius: 12px; margin: 15px 0;">
+              <p style="color: #166534; font-weight: 600; margin: 0; font-size: 14px;">
+                💡 <strong>Return Methods:</strong><br>
+                • Use browser's back button<br>
+                • Visit: <a href="back-to-dashboard.html" style="color: #059669; text-decoration: underline;">back-to-dashboard.html</a><br>
+                • Bookmark this dashboard page
+              </p>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 15px; margin: 20px 0; flex-wrap: wrap;">
+              <div style="background: linear-gradient(135deg, #dbeafe, #bfdbfe); padding: 8px 12px; border-radius: 16px; font-size: 12px; color: #1e40af; font-weight: 500;">
+                🌱 Soil Analysis
+              </div>
+              <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 8px 12px; border-radius: 16px; font-size: 12px; color: #92400e; font-weight: 500;">
+                🌡️ Weather Data
+              </div>
+              <div style="background: linear-gradient(135deg, #e0e7ff, #c7d2fe); padding: 8px 12px; border-radius: 16px; font-size: 12px; color: #3730a3; font-weight: 500;">
+                🤖 AI Predictions
+              </div>
+            </div>
+          </div>
+        `,
+        icon: null,
+        confirmButtonText: '🚀 Continue to Crop Tool',
+        cancelButtonText: '❌ Stay on Dashboard',
+        showCancelButton: true,
+        confirmButtonColor: '#22c55e',
+        cancelButtonColor: '#6b7280',
+        customClass: {
+          popup: 'enhanced-slide-down',
+          confirmButton: 'enhanced-button',
+          cancelButton: 'enhanced-button'
+        },
+        showClass: {
+          backdrop: 'swal2-backdrop-show'
+        },
+        hideClass: {
+          backdrop: 'swal2-backdrop-hide',
+          popup: 'enhanced-zoom-out'
+        },
+        reverseButtons: true,
+        focusConfirm: true,
+        width: '500px'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Navigate to crop recommendation tool
+          window.location.href = 'https://crop-recommendation-1-3n81.onrender.com/';
+        }
+      });
+    }
+
+    // Make function globally available
+    window.handleCropRecommendationClick = handleCropRecommendationClick;
   </script>
 
 </body>
