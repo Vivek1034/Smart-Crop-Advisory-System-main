@@ -17,6 +17,88 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+
+// Password Toggle Functionality
+function initializePasswordToggle() {
+    const togglePasswordBtn = document.getElementById('toggleRegPasswordBtn');
+    const passwordInput = document.getElementById('reg-password');
+    const togglePasswordIcon = document.getElementById('toggleRegPasswordIcon');
+    
+    console.log('Initializing register password toggle...');
+    console.log('Elements found:', {
+        button: !!togglePasswordBtn,
+        input: !!passwordInput,
+        icon: !!togglePasswordIcon
+    });
+    
+    // Check if already initialized
+    if (togglePasswordBtn && togglePasswordBtn.hasAttribute('data-initialized')) {
+        console.log('Register password toggle already initialized');
+        return;
+    }
+    
+    if (togglePasswordBtn && passwordInput && togglePasswordIcon) {
+        // Mark as initialized
+        togglePasswordBtn.setAttribute('data-initialized', 'true');
+        togglePasswordBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            console.log('Register toggle clicked - current type:', passwordInput.type);
+            
+            if (passwordInput.type === 'password') {
+                // Show password
+                passwordInput.type = 'text';
+                togglePasswordIcon.classList.remove('fa-eye');
+                togglePasswordIcon.classList.add('fa-eye-slash');
+                togglePasswordBtn.classList.add('active');
+                togglePasswordBtn.title = 'Hide Password';
+                console.log('Register password is now visible');
+            } else {
+                // Hide password
+                passwordInput.type = 'password';
+                togglePasswordIcon.classList.remove('fa-eye-slash');
+                togglePasswordIcon.classList.add('fa-eye');
+                togglePasswordBtn.classList.remove('active');
+                togglePasswordBtn.title = 'Show Password';
+                console.log('Register password is now hidden');
+            }
+        });
+        
+        console.log('Register password toggle initialized successfully!');
+    } else {
+        console.error('Could not find required elements for register password toggle');
+    }
+}
+
+// Initialize password toggle when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing register password toggle...');
+    initializePasswordToggle();
+});
+
+// Also try when window is fully loaded as backup
+window.addEventListener('load', function() {
+    console.log('Window loaded, backup initialization for register...');
+    // Small delay to ensure everything is rendered
+    setTimeout(function() {
+        console.log('Attempting backup initialization...');
+        initializePasswordToggle();
+    }, 200);
+});
+
+// Additional backup - try after a longer delay
+setTimeout(function() {
+    console.log('Final backup attempt for register password toggle...');
+    const btn = document.getElementById('toggleRegPasswordBtn');
+    const input = document.getElementById('reg-password');
+    console.log('Final check - Button exists:', !!btn, 'Input exists:', !!input);
+    if (btn && input && !btn.hasAttribute('data-initialized')) {
+        btn.setAttribute('data-initialized', 'true');
+        initializePasswordToggle();
+    }
+}, 1000);
+
 // inputs
 
 
