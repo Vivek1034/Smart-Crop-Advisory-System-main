@@ -23,7 +23,6 @@
   <link rel="stylesheet" href="../static/style.css" />
   <link rel="stylesheet" href="main.css" />
   <link rel="stylesheet" href="theme.css" />
-  <link rel="stylesheet" href="style.css" />
 
   <!-- Font Awesome -->
   <link
@@ -713,8 +712,118 @@
       <script>
         document.getElementById('goLoanGuide').addEventListener('click', function (event) {
           event.preventDefault();
-          const lang = document.getElementById('languageSelect').value;
-          window.location.href = `smart_loan.html?lang=${lang}`;
+          
+          // Get language selection with fallback
+          const languageSelect = document.getElementById('languageSelect');
+          const lang = languageSelect ? languageSelect.value : 'en';
+          
+          // Add loading state
+          const originalText = this.textContent;
+          this.textContent = 'Loading...';
+          this.disabled = true;
+          
+          // Show confirmation before redirect
+          Swal.fire({
+            title: '🌾 Smart Loan Guide',
+            html: `
+              <p style="font-size: 16px; margin-bottom: 15px;">You're about to access the Smart Loan Eligibility Guide.</p>
+              <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; text-align: left;">
+                <h4 style="color: #0c4a6e; margin-bottom: 10px;">What you can do:</h4>
+                <ul style="color: #374151; margin: 0; padding-left: 20px;">
+                  <li>Check loan eligibility</li>
+                  <li>Calculate loan amounts</li>
+                  <li>Get personalized recommendations</li>
+                  <li>View required documents</li>
+                </ul>
+              </div>
+            `,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: '🚀 Continue',
+            cancelButtonText: '❌ Stay Here',
+            confirmButtonColor: '#22c55e',
+            cancelButtonColor: '#6b7280',
+            customClass: {
+              popup: 'enhanced-slide-down'
+            }
+          }).then((result) => {
+            // Restore button state
+            this.textContent = originalText;
+            this.disabled = false;
+            
+            if (result.isConfirmed) {
+              try {
+                window.location.href = `smart_loan.html?lang=${lang}`;
+              } catch (error) {
+                Swal.fire({
+                  title: 'Navigation Error',
+                  text: 'Unable to navigate to the loan guide. Please try again.',
+                  icon: 'error',
+                  confirmButtonColor: '#22c55e'
+                });
+              }
+            }
+          });
+        });
+
+        // Add click handlers for loan cards
+        document.addEventListener('DOMContentLoaded', function() {
+          const loanCards = document.querySelectorAll('.loan-card');
+          
+          loanCards.forEach(card => {
+            card.addEventListener('click', function() {
+              const loanType = this.dataset.type;
+              const lang = document.getElementById('languageSelect').value || 'en';
+              
+              // Add visual feedback
+              this.style.transform = 'scale(0.95)';
+              setTimeout(() => {
+                this.style.transform = 'scale(1)';
+              }, 150);
+              
+              // Show confirmation and redirect
+              Swal.fire({
+                title: '🌾 Loan Application',
+                html: `
+                  <p style="font-size: 16px; margin-bottom: 15px;">You selected: <strong>${this.querySelector('span').textContent}</strong></p>
+                  <p style="color: #6b7280;">You will be redirected to the Smart Loan Eligibility Guide where you can check your eligibility and apply for this specific loan type.</p>
+                `,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: '🚀 Continue',
+                cancelButtonText: '❌ Cancel',
+                confirmButtonColor: '#22c55e',
+                cancelButtonColor: '#6b7280',
+                customClass: {
+                  popup: 'enhanced-slide-down',
+                  confirmButton: 'enhanced-button'
+                },
+                showClass: {
+                  backdrop: 'swal2-backdrop-show'
+                },
+                hideClass: {
+                  backdrop: 'swal2-backdrop-hide',
+                  popup: 'enhanced-zoom-out'
+                }
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // Redirect to smart loan page with loan type and language
+                  window.location.href = `smart_loan.html?lang=${lang}&type=${loanType}`;
+                }
+              });
+            });
+
+            // Add hover effects
+            card.addEventListener('mouseenter', function() {
+              this.style.transform = 'translateY(-5px) scale(1.02)';
+              this.style.boxShadow = '0 15px 35px rgba(34, 197, 94, 0.3)';
+            });
+
+            card.addEventListener('mouseleave', function() {
+              this.style.transform = 'translateY(0) scale(1)';
+              this.style.boxShadow = '0 8px 25px rgba(34, 197, 94, 0.2)';
+            });
+          });
         });
       </script>
   </main>
@@ -900,80 +1009,6 @@
   .goog-te-banner-frame.skiptranslate { display: none !important; } 
   body { top: 0 !important; } /* Prevent page shift due to translate banner */
 </style>
-
-  <!-- Enhanced Voice Assistant for Dashboard with Multi-Language Support -->
-  <div class="voice-assistant-container" id="voiceAssistantContainer">
-    <div class="language-selector" id="languageSelector">
-      <button class="lang-btn" id="langToggle" title="Select Language">
-        <i class="fas fa-language"></i>
-        <span class="lang-text">EN</span>
-      </button>
-      <div class="lang-dropdown" id="langDropdown">
-        <div class="lang-option" data-lang="en-IN" data-code="EN">
-          <span class="flag">🇮🇳</span>
-          <span>English</span>
-        </div>
-        <div class="lang-option" data-lang="hi-IN" data-code="हि">
-          <span class="flag">🇮🇳</span>
-          <span>हिंदी</span>
-        </div>
-        <div class="lang-option" data-lang="bn-IN" data-code="বা">
-          <span class="flag">🇮🇳</span>
-          <span>বাংলা</span>
-        </div>
-        <div class="lang-option" data-lang="te-IN" data-code="తె">
-          <span class="flag">🇮🇳</span>
-          <span>తెలుగు</span>
-        </div>
-        <div class="lang-option" data-lang="mr-IN" data-code="म">
-          <span class="flag">🇮🇳</span>
-          <span>मराठी</span>
-        </div>
-        <div class="lang-option" data-lang="ta-IN" data-code="த">
-          <span class="flag">🇮🇳</span>
-          <span>தமிழ்</span>
-        </div>
-        <div class="lang-option" data-lang="gu-IN" data-code="ગુ">
-          <span class="flag">🇮🇳</span>
-          <span>ગુજરાતી</span>
-        </div>
-        <div class="lang-option" data-lang="kn-IN" data-code="ಕ">
-          <span class="flag">🇮🇳</span>
-          <span>ಕನ್ನಡ</span>
-        </div>
-        <div class="lang-option" data-lang="ml-IN" data-code="മ">
-          <span class="flag">🇮🇳</span>
-          <span>മലയാളം</span>
-        </div>
-        <div class="lang-option" data-lang="pa-IN" data-code="ਪ">
-          <span class="flag">🇮🇳</span>
-          <span>ਪੰਜਾਬੀ</span>
-        </div>
-        <div class="lang-option" data-lang="or-IN" data-code="ଓ">
-          <span class="flag">🇮🇳</span>
-          <span>ଓଡ଼ିଆ</span>
-        </div>
-        <div class="lang-option" data-lang="as-IN" data-code="অ">
-          <span class="flag">🇮🇳</span>
-          <span>অসমীয়া</span>
-        </div>
-      </div>
-    </div>
-    <button class="voice-assistant" id="voiceAssistant" title="Voice Assistant - Click and speak">
-      <div class="voice-waves">
-        <div class="wave wave1"></div>
-        <div class="wave wave2"></div>
-        <div class="wave wave3"></div>
-      </div>
-      <i class="fas fa-microphone" id="voiceIcon"></i>
-      <span class="voice-pulse"></span>
-    </button>
-    <div class="voice-status" id="voiceStatus">
-      <span class="status-text">Click to speak</span>
-    </div>
-  </div>
-
-  <script src="voice-assist.js"></script>
 
 </body>
 </html>
