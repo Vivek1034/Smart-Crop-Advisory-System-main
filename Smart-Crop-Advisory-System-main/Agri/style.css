@@ -999,7 +999,7 @@
 .voice-assistant-container {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  left: 20px;
   z-index: 10000;
   display: flex;
   flex-direction: column;
@@ -1049,7 +1049,7 @@
 .lang-dropdown {
   position: absolute;
   bottom: 100%;
-  right: 0;
+  left: 0;
   margin-bottom: 8px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -1360,7 +1360,7 @@
 @media (max-width: 768px) {
   .voice-assistant-container {
     bottom: 15px;
-    right: 15px;
+    left: 15px;
     gap: 10px;
   }
   
@@ -1389,9 +1389,10 @@
 /* Responsive Design for Language Selector */
 @media (max-width: 768px) {
   .lang-dropdown {
-    right: -10px;
+    left: -10px;
     min-width: 160px;
     max-height: 250px;
+    margin-bottom: 6px;
   }
   
   .lang-btn {
