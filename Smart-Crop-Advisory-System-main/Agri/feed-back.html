@@ -5,44 +5,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>AgriTech - Share Your Thoughts</title>
-    <link rel="icon" type="image/png" href="/AgriTech/images/logo.png">
+    <title>KrishiVaani - Share Your Feedback</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Light theme variables */
-            --bg-gradient: linear-gradient(135deg, #f0f9f0 0%, #e8f5e8 30%, #f8fff8 70%, #f0f9f0 100%);
-            --bg-primary: rgba(255, 255, 255, 0.9);
-            --bg-secondary: rgba(255, 255, 255, 0.95);
-            --text-primary: #2d5a2d;
-            --text-secondary: #5a7a5a;
-            --text-muted: #81c784;
-            --border-color: rgba(139, 195, 74, 0.2);
-            --input-bg: rgba(255, 255, 255, 0.8);
-            --input-border: rgba(139, 195, 74, 0.2);
-            --shadow-primary: rgba(76, 175, 80, 0.1);
-            --shadow-secondary: rgba(0, 0, 0, 0.05);
-            --header-bg: rgba(255, 255, 255, 0.95);
-            --header-border: rgba(139, 195, 74, 0.2);
+            /* Modern light theme variables */
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 30%, #e2e8f0 70%, #cbd5e1 100%);
+            --bg-primary: rgba(255, 255, 255, 0.95);
+            --bg-secondary: rgba(248, 250, 252, 0.98);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-color: rgba(148, 163, 184, 0.3);
+            --input-bg: rgba(255, 255, 255, 0.9);
+            --input-border: rgba(148, 163, 184, 0.4);
+            --shadow-primary: rgba(59, 130, 246, 0.15);
+            --shadow-secondary: rgba(0, 0, 0, 0.08);
+            --header-bg: rgba(255, 255, 255, 0.98);
+            --header-border: rgba(148, 163, 184, 0.3);
+            --accent-primary: #3b82f6;
+            --accent-secondary: #10b981;
+            --accent-success: #059669;
         }
 
         .dark-theme {
-            /* Dark theme variables */
-            --bg-gradient: linear-gradient(135deg, #0a1a0a 0%, #1a2e1a 30%, #0f2e0f 70%, #0a1a0a 100%);
-            --bg-primary: rgba(40, 40, 40, 0.9);
-            --bg-secondary: rgba(30, 30, 30, 0.95);
-            --text-primary: #e0e0e0;
-            --text-secondary: #b0b0b0;
-            --text-muted: #66bb6a;
-            --border-color: rgba(102, 187, 106, 0.3);
-            --input-bg: rgba(50, 50, 50, 0.8);
-            --input-border: rgba(102, 187, 106, 0.3);
-            --shadow-primary: rgba(102, 187, 106, 0.2);
-            --shadow-secondary: rgba(0, 0, 0, 0.3);
-            --header-bg: rgba(30, 30, 30, 0.95);
-            --header-border: rgba(102, 187, 106, 0.3);
+            /* Modern dark theme variables */
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 70%, #475569 100%);
+            --bg-primary: rgba(30, 41, 59, 0.95);
+            --bg-secondary: rgba(15, 23, 42, 0.98);
+            --text-primary: #f8fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: rgba(148, 163, 184, 0.2);
+            --input-bg: rgba(51, 65, 85, 0.8);
+            --input-border: rgba(148, 163, 184, 0.3);
+            --shadow-primary: rgba(59, 130, 246, 0.2);
+            --shadow-secondary: rgba(0, 0, 0, 0.4);
+            --header-bg: rgba(15, 23, 42, 0.98);
+            --header-border: rgba(148, 163, 184, 0.2);
+            --accent-primary: #60a5fa;
+            --accent-secondary: #34d399;
+            --accent-success: #10b981;
         }
 
         * {
@@ -52,14 +58,19 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 50%, #475569 75%, #64748b 100%);
+            background-attachment: fixed;
+            color: #f8fafc;
+            line-height: 1.7;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
             transition: all 0.3s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-weight: 400;
         }
 
         body::before {
@@ -91,15 +102,15 @@
         }
 
         header {
-            background: var(--header-bg);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--header-border);
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 20px var(--shadow-primary);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+            padding: 2rem 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 100;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .header-content {
@@ -119,18 +130,32 @@
 
         .site-logo {
             height: 45px;
-            width: auto;
+            width: 45px;
+            object-fit: contain;
+            background: white;
+            padding: 4px;
+            border-radius: 12px;
+            border: 2px solid rgba(139, 195, 74, 0.3);
             filter: drop-shadow(0 2px 8px rgba(139, 195, 74, 0.3));
+            transition: all 0.3s ease;
+        }
+
+        .site-logo:hover {
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 12px rgba(139, 195, 74, 0.4));
         }
 
         header h1 {
-            background: linear-gradient(135deg, #2e7d32, #4caf50, #66bb6a);
+            color: #f8fafc;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
         }
 
         .header-actions {
@@ -140,47 +165,50 @@
         }
 
         .theme-toggle {
-            background: rgba(139, 195, 74, 0.1);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 8px 16px;
-            border-radius: 25px;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            color: #f8fafc;
+            padding: 10px 18px;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .theme-toggle:hover {
-            background: rgba(139, 195, 74, 0.2);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px var(--shadow-primary);
-        }
-
-        .logout-button {
-            background: linear-gradient(135deg, #ff7043, #ff5722);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(255, 112, 67, 0.25);
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             gap: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-toggle:hover {
+            background: rgba(59, 130, 246, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .logout-button {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
             cursor: pointer;
+            backdrop-filter: blur(10px);
         }
 
         .logout-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 112, 67, 0.35);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.4);
             text-decoration: none;
             color: white;
+            background: linear-gradient(135deg, #f87171, #ef4444);
         }
 
         main {
@@ -192,19 +220,20 @@
         }
 
         .feedback-container {
-            max-width: 600px;
+            max-width: 700px;
             width: 100%;
-            background: var(--bg-primary);
-            backdrop-filter: blur(20px);
-            border-radius: 24px;
-            padding: 3rem;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(24px);
+            border-radius: 32px;
+            padding: 3.5rem;
             box-shadow: 
-                0 20px 40px var(--shadow-primary),
-                0 8px 16px var(--shadow-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+                0 25px 50px rgba(0, 0, 0, 0.25),
+                0 12px 24px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.2);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .feedback-container::before {
@@ -213,9 +242,9 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #4caf50, #66bb6a, #81c784);
-            border-radius: 24px 24px 0 0;
+            height: 4px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd, #10b981);
+            border-radius: 32px 32px 0 0;
         }
 
         .feedback-header {
@@ -231,21 +260,23 @@
         }
 
         .feedback-title {
-            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-size: 1.75rem;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .feedback-subtitle {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            opacity: 0.9;
-            font-weight: 400;
+            color: #e2e8f0;
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 500;
+            line-height: 1.6;
         }
 
         .feedback-form {
@@ -263,15 +294,16 @@
         .form-group label {
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 0.75rem;
-            color: #2e7d32;
-            font-weight: 500;
-            font-size: 0.95rem;
+            gap: 10px;
+            margin-bottom: 1rem;
+            color: #f8fafc;
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: -0.01em;
         }
 
         .dark-theme .form-group label {
-            color: #66bb6a;
+            color: #f8fafc;
         }
 
         .input-icon {
@@ -294,32 +326,34 @@
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 1rem 1.25rem;
-            border: 1.5px solid var(--input-border);
-            border-radius: 16px;
-            font-size: 1rem;
-            background: var(--input-bg);
-            backdrop-filter: blur(10px);
+            padding: 1.25rem 1.5rem;
+            border: 2px solid rgba(148, 163, 184, 0.3);
+            border-radius: 20px;
+            font-size: 1.05rem;
+            background: rgba(51, 65, 85, 0.8);
+            backdrop-filter: blur(12px);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: inherit;
-            color: var(--text-primary);
+            color: #f8fafc;
+            font-weight: 500;
         }
 
         .form-group input::placeholder,
         .form-group textarea::placeholder {
-            color: var(--text-muted);
-            opacity: 0.7;
+            color: #94a3b8;
+            opacity: 0.8;
+            font-weight: 400;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
-            border-color: #4caf50;
+            border-color: #3b82f6;
             outline: none;
-            background: var(--bg-secondary);
+            background: rgba(30, 41, 59, 0.9);
             box-shadow: 
-                0 0 0 3px rgba(76, 175, 80, 0.1),
-                0 4px 12px rgba(76, 175, 80, 0.15);
-            transform: translateY(-1px);
+                0 0 0 4px rgba(59, 130, 246, 0.15),
+                0 6px 16px rgba(59, 130, 246, 0.2);
+            transform: translateY(-2px);
         }
 
         .form-group textarea {
@@ -338,27 +372,45 @@
 
         .submit-button {
             width: 100%;
-            padding: 1.25rem;
-            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8, #10b981);
             color: white;
             border: none;
-            border-radius: 16px;
-            font-size: 1.1rem;
+            border-radius: 20px;
+            font-size: 1.15rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            margin-top: 1.5rem;
+            margin-top: 2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            box-shadow: 0 8px 24px rgba(76, 175, 80, 0.2);
-            letter-spacing: 0.3px;
+            gap: 14px;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+            letter-spacing: 0.02em;
+            position: relative;
+            overflow: hidden;
         }
 
         .submit-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 32px rgba(76, 175, 80, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
+            background: linear-gradient(135deg, #60a5fa, #3b82f6, #34d399);
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
         }
 
         .submit-button:disabled {
@@ -633,22 +685,27 @@
         }
 
         footer {
-            background: linear-gradient(135deg, #66bb6a, #4caf50);
-            color: white;
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #f8fafc;
             text-align: center;
-            padding: 2rem 1rem;
+            padding: 3rem 2rem;
             margin-top: auto;
             transition: all 0.3s ease;
+            border-top: 1px solid rgba(148, 163, 184, 0.2);
         }
 
         .dark-theme footer {
-            background: linear-gradient(135deg, #2e4d2e, #1a3d1a);
+            background: linear-gradient(135deg, #1e293b, #0f172a);
         }
 
         footer h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         footer p {
@@ -737,8 +794,8 @@
         <header>
             <div class="header-content">
                 <div class="logo-section">
-                    <img src="/images/logo.png" alt="AgriTech logo" class="site-logo">
-                    <h1>AgriTech</h1>
+                    <img src="images/logo.png" alt="KrishiVaani logo" class="site-logo">
+                    <h1>KrishiVaani</h1>
                 </div>
                 <div class="header-actions">
                     <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
@@ -812,9 +869,9 @@
                     <h3>Thank You for Your Feedback!</h3>
                     <p>We truly appreciate you taking the time to share your thoughts with us. Your feedback helps us create better agricultural solutions for everyone.</p>
                     <div class="action-buttons">
-                        <a href="main.html" class="home-button">
+                        <a href="dashboard.html" class="home-button">
                             <i class="fas fa-home"></i>
-                            Back to Home
+                            Back to Dashboard
                         </a>
                         <button id="viewFeedbacks" class="view-button" onclick="showAllFeedbacks()">
                             <i class="fas fa-list"></i>
@@ -830,10 +887,14 @@
                     </div>
                     <div id="feedbacksList" class="feedbacks-container"></div>
                     <div class="action-buttons" style="margin-top: 2rem;">
-                        <a href="main.html" class="home-button">
+                        <a href="dashboard.html" class="home-button">
                             <i class="fas fa-home"></i>
-                            Back to Home
+                            Back to Dashboard
                         </a>
+                        <button class="view-button" onclick="showNewFeedbackForm()">
+                            <i class="fas fa-plus"></i>
+                            New Feedback
+                        </button>
                     </div>
                 </div>
             </div>
@@ -851,7 +912,7 @@
         </div>
 
         <footer>
-            <h3>🌱 Connect With AgriTech</h3>
+            <h3>🌱 KrishiVaani</h3>
             <p>Join our mission to transform agriculture through technology and innovation.</p>
             <div style="margin: 1rem 0">
                 <a href="https://instagram.com" target="_blank" aria-label="Follow us on Instagram">
@@ -865,7 +926,7 @@
                 </a>
             </div>
             <p style="margin-top: 1.5rem; opacity: 0.8; font-size: 0.9rem;">
-                &copy; 2025 AgriTech | Empowering India's Farming Future 🇮🇳
+                &copy; 2025 KrishiVaani | Empowering India's Farming Future 🇮🇳
             </p>
         </footer>
     </div>
@@ -1039,6 +1100,29 @@
             if (diffDays === 2) return 'Yesterday';
             if (diffDays <= 7) return `${diffDays - 1} days ago`;
             return date.toLocaleDateString();
+        }
+
+        function showNewFeedbackForm() {
+            const feedbackForm = document.getElementById('feedbackForm');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const allFeedbacksSection = document.getElementById('allFeedbacks');
+            const feedbackHeader = document.querySelector('.feedback-header');
+            
+            // Hide all sections
+            thankYouMessage.classList.add('hidden');
+            allFeedbacksSection.classList.add('hidden');
+            
+            // Show form
+            feedbackForm.classList.remove('hidden');
+            feedbackHeader.classList.remove('hidden');
+            
+            // Reset form
+            feedbackForm.reset();
+            const charCountElement = document.getElementById('charCount');
+            if (charCountElement) {
+                charCountElement.textContent = '0';
+                charCountElement.style.color = '#81c784';
+            }
         }
 
         function showLogoutConfirmation() {
