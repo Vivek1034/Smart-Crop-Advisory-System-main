@@ -87,6 +87,9 @@ async function showLogoutConfirmation() {
                     backdrop: true
                 });
             }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            // Handle cancel button - redirect to dashboard
+            window.location.href = 'dashboard.html';
         }
     });
 }

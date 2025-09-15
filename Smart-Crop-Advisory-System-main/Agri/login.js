@@ -122,6 +122,9 @@ login.addEventListener("click", function (event) {
                 color: '#166534',
                 iconColor: '#22c55e'
             }).then(() => {
+                // Mark that user has logged in successfully for location tracking
+                localStorage.setItem('userLoggedIn', 'true');
+                localStorage.setItem('loginTimestamp', new Date().toISOString());
                 window.location.href = "dashboard.html";
             });
         })
