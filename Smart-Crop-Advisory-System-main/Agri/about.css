@@ -509,25 +509,7 @@ p {
   }
 }
 
-body {
+/* Animation classes */
+.fade-in {
   animation: fadeIn 0.5s ease-in;
-}
-
-section:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 40px var(--shadow-medium);
-}
-
-.nav-buttons a.btn:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 2px;
-}
-
-.scroll-to-top:focus-visible {
-  outline: 2px solid white;
-  outline-offset: 2px;
-}
-=======
-  from { opacity: 0; }
-  to   { opacity: 1; }
 }
