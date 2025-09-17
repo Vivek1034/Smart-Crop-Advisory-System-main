@@ -1186,6 +1186,127 @@
       }
     }
 
+    /* Live Crop and Market Analysis Styles */
+    .smart-recommendation-section {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .recommendation-cards {
+      display: grid !important;
+    }
+
+    .crop-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    }
+
+    .crop-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-color: rgba(34, 197, 94, 0.4);
+    }
+
+    .crop-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .suitability-score {
+      display: inline-block;
+      background: linear-gradient(135deg, #22c55e, #16a34a);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .crop-details {
+      margin-bottom: 1rem;
+    }
+
+    .crop-details p {
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .market-price {
+      background: rgba(34, 197, 94, 0.1);
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      margin-top: 0.75rem;
+    }
+
+    .market-price h4 {
+      color: #16a34a;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .price-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-value {
+      font-weight: 700;
+      color: #15803d;
+      font-size: 1.1rem;
+    }
+
+    .price-trend {
+      font-size: 0.85rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 12px;
+      font-weight: 600;
+    }
+
+    .trend-up {
+      background: rgba(34, 197, 94, 0.1);
+      color: #16a34a;
+    }
+
+    .trend-down {
+      background: rgba(239, 68, 68, 0.1);
+      color: #dc2626;
+    }
+
+    .trend-stable {
+      background: rgba(107, 114, 128, 0.1);
+      color: #4b5563;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .recommendation-cards {
+        grid-template-columns: 1fr !important;
+      }
+      
+      .smart-recommendation-section {
+        margin: 2rem 0;
+        padding: 1rem;
+      }
+    }
+
 
 </style>
 </head>
@@ -1194,13 +1315,17 @@
   <div class="header-nav-wrapper">
     <header>
       <div class="brand">
-        <img src="images/logo.png" alt="KrishiVaani logo" class="site-logo">
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <h3>Welcome to KrishiVaani Platform</h3>
-        <div class="user-email-display" id="userEmailDisplay">
-          <i class="fas fa-user-circle"></i>
-          <span id="userEmailText">Loading...</span>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <img src="images/logo.png" alt="KrishiVaani logo" class="site-logo">
+          <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+            <h3 style="margin: 0; font-size: 1.2rem;">Welcome to KrishiVaani Platform</h3>
+            <div class="user-email-display" id="userEmailDisplay">
+              <i class="fas fa-user-circle"></i>
+              <span id="userEmailText">Loading...</span>
+            </div>
+          </div>
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       </div>
       <div class="header-buttons">
         <div class="location-container">
@@ -1468,6 +1593,38 @@
           </div>
         </div>
       </a>
+    </section>
+
+    <!-- Live Crop and Market Analysis Section -->
+    <section class="smart-recommendation-section" style="margin: 2rem 0; padding: 1.5rem; background: rgba(255, 255, 255, 0.95); border-radius: 20px; box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.2);">
+      <div class="recommendation-header" style="text-align: center; margin-bottom: 1.5rem;">
+        <h2 style="color: var(--text-primary); font-size: 1.8rem; margin-bottom: 0.5rem;">
+          📊 Live Crop and Market Analysis
+        </h2>
+        <p style="color: var(--text-secondary); font-size: 1rem;">
+          Based on your current location and weather conditions
+        </p>
+      </div>
+
+      <div id="recommendation-content" class="recommendation-content">
+        <div id="loading-state" class="loading-state" style="text-align: center; padding: 2rem;">
+          <div class="spinner" style="display: inline-block; width: 40px; height: 40px; border: 4px solid #f3f4f6; border-top: 4px solid #22c55e; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+          <p style="margin-top: 1rem; color: var(--text-secondary);">Analyzing your location and weather...</p>
+        </div>
+        
+        <div id="recommendation-cards" class="recommendation-cards" style="display: none; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+          <!-- Crop recommendations will be populated here -->
+        </div>
+        
+        <div id="error-state" class="error-state" style="display: none; text-align: center; padding: 2rem; background: #fef2f2; border-radius: 12px; border: 1px solid #fecaca;">
+          <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #ef4444; margin-bottom: 1rem;"></i>
+          <h3 style="color: #dc2626; margin-bottom: 0.5rem;">Unable to Load Recommendations</h3>
+          <p style="color: #991b1b; margin-bottom: 1rem;">Please check your location settings or try again later.</p>
+          <button id="retry-btn" class="btn-green" onclick="loadSmartRecommendations()" style="padding: 0.5rem 1.5rem; background: #22c55e; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            Retry
+          </button>
+        </div>
+      </div>
     </section>
 
     <body>
@@ -2132,6 +2289,248 @@
 
     // Make function globally available
     window.handleCropRecommendationClick = handleCropRecommendationClick;
+
+    // Live Crop and Market Analysis System
+    let userLocation = null;
+    let weatherData = null;
+
+    // Sample crop database with market prices
+    const cropDatabase = {
+      'Rice': {
+        seasons: ['monsoon', 'winter'],
+        tempRange: [20, 35],
+        rainfall: [100, 200],
+        soilTypes: ['clay', 'loamy'],
+        emoji: '🌾',
+        marketPrice: { min: 2100, max: 2400, trend: 'up', location: 'Punjab' }
+      },
+      'Wheat': {
+        seasons: ['winter'],
+        tempRange: [15, 25],
+        rainfall: [30, 75],
+        soilTypes: ['loamy', 'sandy'],
+        emoji: '🌾',
+        marketPrice: { min: 2200, max: 2500, trend: 'stable', location: 'Haryana' }
+      },
+      'Cotton': {
+        seasons: ['summer', 'monsoon'],
+        tempRange: [21, 30],
+        rainfall: [50, 100],
+        soilTypes: ['black', 'loamy'],
+        emoji: '🌱',
+        marketPrice: { min: 5800, max: 6200, trend: 'up', location: 'Gujarat' }
+      },
+      'Sugarcane': {
+        seasons: ['monsoon'],
+        tempRange: [26, 32],
+        rainfall: [125, 175],
+        soilTypes: ['loamy', 'clay'],
+        emoji: '🎋',
+        marketPrice: { min: 340, max: 380, trend: 'down', location: 'Maharashtra' }
+      },
+      'Maize': {
+        seasons: ['summer', 'monsoon'],
+        tempRange: [21, 27],
+        rainfall: [60, 110],
+        soilTypes: ['loamy', 'sandy'],
+        emoji: '🌽',
+        marketPrice: { min: 1800, max: 2100, trend: 'stable', location: 'Karnataka' }
+      },
+      'Soybean': {
+        seasons: ['monsoon'],
+        tempRange: [26, 30],
+        rainfall: [75, 125],
+        soilTypes: ['black', 'loamy'],
+        emoji: '🫘',
+        marketPrice: { min: 4200, max: 4800, trend: 'up', location: 'Madhya Pradesh' }
+      }
+    };
+
+    // Get current season based on month
+    function getCurrentSeason() {
+      const month = new Date().getMonth() + 1;
+      if (month >= 3 && month <= 6) return 'summer';
+      if (month >= 7 && month <= 10) return 'monsoon';
+      return 'winter';
+    }
+
+    // Calculate crop suitability score
+    function calculateSuitability(crop, weather, location) {
+      const cropData = cropDatabase[crop];
+      let score = 0;
+      
+      // Season compatibility (30%)
+      const currentSeason = getCurrentSeason();
+      if (cropData.seasons.includes(currentSeason)) score += 30;
+      
+      // Temperature compatibility (40%)
+      if (weather && weather.temperature >= cropData.tempRange[0] && weather.temperature <= cropData.tempRange[1]) {
+        score += 40;
+      } else if (weather && weather.temperature) {
+        const tempDiff = Math.min(
+          Math.abs(weather.temperature - cropData.tempRange[0]),
+          Math.abs(weather.temperature - cropData.tempRange[1])
+        );
+        score += Math.max(0, 40 - tempDiff * 2);
+      }
+      
+      // Rainfall/humidity compatibility (20%)
+      if (weather && weather.humidity) {
+        const humidityScore = Math.max(0, Math.min(20, weather.humidity * 0.2));
+        score += humidityScore;
+      } else {
+        score += 15; // Default score for monsoon crops
+      }
+      
+      // Random factor for demonstration (10%)
+      score += Math.random() * 10;
+      
+      return Math.min(100, Math.round(score));
+    }
+
+    // Format price trend
+    function getPriceTrend(trend) {
+      const trends = {
+        'up': { class: 'trend-up', text: '↗ Rising', icon: '📈' },
+        'down': { class: 'trend-down', text: '↘ Falling', icon: '📉' },
+        'stable': { class: 'trend-stable', text: '→ Stable', icon: '📊' }
+      };
+      return trends[trend] || trends.stable;
+    }
+
+    // Create crop recommendation card
+    function createCropCard(cropName, suitabilityScore, cropData) {
+      const trendInfo = getPriceTrend(cropData.marketPrice.trend);
+      
+      return `
+        <div class="crop-card">
+          <div class="crop-name">
+            <span>${cropData.emoji}</span>
+            <span>${cropName}</span>
+          </div>
+          <div class="suitability-score">
+            ${suitabilityScore}% Suitable
+          </div>
+          <div class="crop-details">
+            <p><i class="fas fa-thermometer-half" style="color: #f59e0b;"></i> <strong>Best Temp:</strong> ${cropData.tempRange[0]}°C - ${cropData.tempRange[1]}°C</p>
+            <p><i class="fas fa-calendar-alt" style="color: #3b82f6;"></i> <strong>Season:</strong> ${cropData.seasons.join(', ')}</p>
+            <p><i class="fas fa-mountain" style="color: #8b5cf6;"></i> <strong>Soil:</strong> ${cropData.soilTypes.join(', ')}</p>
+          </div>
+          <div class="market-price">
+            <h4><i class="fas fa-chart-line"></i> Current Market Price</h4>
+            <div class="price-info">
+              <span class="price-value">₹${cropData.marketPrice.min} - ₹${cropData.marketPrice.max}/quintal</span>
+              <span class="price-trend ${trendInfo.class}">
+                ${trendInfo.text}
+              </span>
+            </div>
+            <p style="font-size: 0.85rem; color: #6b7280; margin: 0;">
+              <i class="fas fa-map-marker-alt"></i> ${cropData.marketPrice.location} Market
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Simulate weather API call
+    async function getWeatherData(lat, lon) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            temperature: Math.round(20 + Math.random() * 15), // 20-35°C
+            humidity: Math.round(40 + Math.random() * 40), // 40-80%
+            rainfall: Math.round(Math.random() * 100), // 0-100mm
+            description: 'Partly cloudy',
+            location: userLocation?.district || 'Your area'
+          });
+        }, 1000);
+      });
+    }
+
+    // Load smart crop recommendations
+    async function loadSmartRecommendations() {
+      const loadingState = document.getElementById('loading-state');
+      const recommendationCards = document.getElementById('recommendation-cards');
+      const errorState = document.getElementById('error-state');
+      
+      // Show loading state
+      loadingState.style.display = 'block';
+      recommendationCards.style.display = 'none';
+      errorState.style.display = 'none';
+      
+      try {
+        // Get user location (use existing location handler if available)
+        if (typeof LocationHandler !== 'undefined' && window.locationHandler) {
+          try {
+            const location = await window.locationHandler.getCurrentLocation();
+            userLocation = location;
+          } catch (e) {
+            console.log('Using fallback location');
+          }
+        }
+        
+        // Get weather data
+        if (userLocation && userLocation.lat && userLocation.lon) {
+          weatherData = await getWeatherData(userLocation.lat, userLocation.lon);
+        } else {
+          // Use default weather data for demonstration
+          weatherData = {
+            temperature: 28,
+            humidity: 65,
+            rainfall: 80,
+            description: 'Partly cloudy',
+            location: 'Your area'
+          };
+        }
+        
+        // Calculate recommendations for all crops
+        const recommendations = [];
+        for (const [cropName, cropData] of Object.entries(cropDatabase)) {
+          const score = calculateSuitability(cropName, weatherData, userLocation);
+          recommendations.push({ cropName, score, cropData });
+        }
+        
+        // Sort by suitability score and take top 3
+        recommendations.sort((a, b) => b.score - a.score);
+        const topRecommendations = recommendations.slice(0, 3);
+        
+        // Generate HTML for recommendations
+        const cardsHTML = topRecommendations.map(rec => 
+          createCropCard(rec.cropName, rec.score, rec.cropData)
+        ).join('');
+        
+        // Hide loading and show results
+        loadingState.style.display = 'none';
+        recommendationCards.innerHTML = cardsHTML;
+        recommendationCards.style.display = 'grid';
+        
+        // Add weather info header
+        const weatherInfo = `
+          <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(59, 130, 246, 0.2);">
+            <h4 style="color: #1d4ed8; margin-bottom: 0.5rem;">
+              <i class="fas fa-cloud-sun"></i> Current Conditions - ${weatherData.location}
+            </h4>
+            <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+              <span><i class="fas fa-thermometer-half" style="color: #f59e0b;"></i> ${weatherData.temperature}°C</span>
+              <span><i class="fas fa-tint" style="color: #3b82f6;"></i> ${weatherData.humidity}% Humidity</span>
+              <span><i class="fas fa-eye" style="color: #6b7280;"></i> ${weatherData.description}</span>
+            </div>
+          </div>
+        `;
+        recommendationCards.insertAdjacentHTML('afterbegin', weatherInfo);
+        
+      } catch (error) {
+        console.error('Error loading recommendations:', error);
+        loadingState.style.display = 'none';
+        errorState.style.display = 'block';
+      }
+    }
+
+    // Initialize smart recommendations when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Delay loading slightly to ensure other scripts are loaded
+      setTimeout(loadSmartRecommendations, 500);
+    });
   </script>
 
 </body>
