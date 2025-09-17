@@ -11,6 +11,15 @@
     <title>Weather Check System</title>
 </head>
 <body>
+    <!-- Header with Back Button -->
+    <div style="padding: 20px; background: linear-gradient(135deg, #4CAF50, #45a049); color: white; display: flex; justify-content: space-between; align-items: center;">
+        <a href="dashboard.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+            <span style="font-size: 18px;">←</span> Back to Dashboard
+        </a>
+        <h2 style="margin: 0; font-size: 24px;">🌦️ Weather Check System</h2>
+        <div style="width: 150px;"></div> <!-- Spacer for centering -->
+    </div>
+
     <div class="box weather-box">
     
       <div class="left general-data">
@@ -76,7 +85,7 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="main.html">Dashboard</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
             <li><a href="feed-back.html">Feedback</a></li>
             <li><a href="chat.html">AI Assistant</a></li>
           </ul>

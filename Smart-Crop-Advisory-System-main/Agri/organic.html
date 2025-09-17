@@ -28,7 +28,7 @@
     <header>
       <div class="header-container">
         <div class="brand">
-          <img src="/AgriTech/images/logo.png" alt="AgriTech logo" class="site-logo">
+          <img src="images/logo.png" alt="AgriTech logo" class="site-logo">
           <h1>Welcome to AgriTech</h1>
         </div>
         <div style="display: flex; gap: 1rem; align-items: center;">
@@ -37,37 +37,14 @@
             <i class="fas fa-moon moon-icon"></i>
             <span class="theme-text">Light</span>
           </button>
-          <a href="#" class="logout-button" onclick="showLogoutConfirmation()">Logout</a>
+          <a href="dashboard.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+            <i class="fas fa-arrow-left"></i> Back to Dashboard
+          </a>
         </div>
       </div>
     </header>
 
-    <nav>
-      <div class="nav-container">
-        <ul>
-          <li><a href="farmer.html">👨‍🌾 Farmer Connection</a></li>
-          <li>
-            <a
-              href="./Crop Yield Prediction/crop_yield_app/templates/index.html"
-              >📊 Yield Prediction</a
-            >
-          </li>
-          <li><a href="disease.html">🔬 Disease Prediction</a></li>
-          <li><a href="organic.html" class="active">🌿 Organic Farming</a></li>
-          <li><a href="shopkeeper.html">🏪 Shopkeeper Listings</a></li>
-          <li><a href="chat.html">🤖 ChatBot</a></li>
-          <li><a href="plantation.html">🌱 Plantation</a></li>
-          <li>
-            <a href="./Crop_Planning/templates/cropplan.html"
-              >📅 Crop Planning</a
-            >
-          </li>
-          <li>
-            <a href="./Labour_Alerts/templates/labour.html">⚠️ Labour Alerts</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <!-- Navigation bar has been removed for cleaner page layout -->
 
     <div class="main-wrapper">
       <div class="page-hero">
@@ -453,7 +430,7 @@
             <h4>Quick Links</h4>
             <ul>
               <li><a href="index.html">Home</a></li>
-              <li><a href="main.html">Dashboard</a></li>
+              <li><a href="dashboard.html">Dashboard</a></li>
               <li><a href="feed-back.html">Feedback</a></li>
               <li><a href="chat.html">AI Assistant</a></li>
             </ul>
