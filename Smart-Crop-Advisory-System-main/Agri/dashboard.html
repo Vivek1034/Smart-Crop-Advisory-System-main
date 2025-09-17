@@ -2398,9 +2398,57 @@
       return trends[trend] || trends.stable;
     }
 
+    // Get user's state name for market location
+    function getUserStateName() {
+      const locationName = getUserLocationName();
+      
+      // Try to extract state from location string
+      if (locationName && locationName !== 'Your area') {
+        // If location contains comma, get the last part (usually the state)
+        if (locationName.includes(',')) {
+          const parts = locationName.split(',');
+          const statePart = parts[parts.length - 1].trim();
+          // Return the state part if it's not empty
+          if (statePart && statePart.length > 2) {
+            return statePart;
+          }
+        }
+        // If no comma, return the full location name
+        return locationName;
+      }
+      
+      // Try to get from userLocation object
+      if (userLocation && userLocation.state) {
+        return userLocation.state;
+      }
+      
+      // Try to get from locationHandler
+      try {
+        const locationElement = document.getElementById('user-location');
+        if (locationElement) {
+          const addressElement = locationElement.querySelector('.location-address');
+          if (addressElement && addressElement.textContent) {
+            const fullAddress = addressElement.textContent.trim();
+            if (fullAddress.includes(',')) {
+              const parts = fullAddress.split(',');
+              const statePart = parts[parts.length - 1].trim();
+              if (statePart && statePart.length > 2) {
+                return statePart;
+              }
+            }
+          }
+        }
+      } catch (e) {
+        console.log('Could not extract state from location element');
+      }
+      
+      return 'Local'; // Fallback
+    }
+
     // Create crop recommendation card
     function createCropCard(cropName, suitabilityScore, cropData) {
       const trendInfo = getPriceTrend(cropData.marketPrice.trend);
+      const userState = getUserStateName();
       
       return `
         <div class="crop-card">
@@ -2425,7 +2473,7 @@
               </span>
             </div>
             <p style="font-size: 0.85rem; color: #6b7280; margin: 0;">
-              <i class="fas fa-map-marker-alt"></i> ${cropData.marketPrice.location} Market
+              <i class="fas fa-map-marker-alt"></i> ${userState} Market
             </p>
           </div>
         </div>
