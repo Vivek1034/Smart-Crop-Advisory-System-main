@@ -2436,15 +2436,96 @@
     async function getWeatherData(lat, lon) {
       return new Promise((resolve) => {
         setTimeout(() => {
+          // Get location name using comprehensive method
+          const locationName = getUserLocationName();
+          
           resolve({
             temperature: Math.round(20 + Math.random() * 15), // 20-35°C
             humidity: Math.round(40 + Math.random() * 40), // 40-80%
             rainfall: Math.round(Math.random() * 100), // 0-100mm
             description: 'Partly cloudy',
-            location: userLocation?.district || 'Your area'
+            location: locationName
           });
         }, 1000);
       });
+    }
+
+    // Get user location name from various sources
+    function getUserLocationName() {
+      // Try to get location from multiple sources
+      let locationName = 'Your area';
+      
+      // Method 1: From existing location display in header (most reliable)
+      try {
+        const locationAddressElement = document.querySelector('.location-address');
+        if (locationAddressElement && locationAddressElement.textContent && 
+            !locationAddressElement.textContent.includes('Loading') && 
+            !locationAddressElement.textContent.includes('Error') &&
+            !locationAddressElement.textContent.includes('detected') &&
+            locationAddressElement.textContent.trim() !== '') {
+          locationName = locationAddressElement.textContent.trim();
+        }
+      } catch (e) {
+        console.log('Could not get location from header address element');
+      }
+      
+      // Method 2: From userLocation object (GPS data)
+      if (locationName === 'Your area' && userLocation) {
+        if (userLocation.address) {
+          locationName = userLocation.address;
+        } else if (userLocation.district && userLocation.state) {
+          locationName = `${userLocation.district}, ${userLocation.state}`;
+        } else if (userLocation.district) {
+          locationName = userLocation.district;
+        } else if (userLocation.state) {
+          locationName = userLocation.state;
+        } else if (userLocation.city) {
+          locationName = userLocation.city;
+        } else if (userLocation.locality) {
+          locationName = userLocation.locality;
+        }
+      }
+      
+      // Method 3: From locationHandler global instance
+      if (locationName === 'Your area') {
+        try {
+          if (typeof locationHandler !== 'undefined' && locationHandler.currentLocation) {
+            // Try to get cached address from the last reverse geocoding
+            const locationElement = document.getElementById('user-location');
+            if (locationElement) {
+              const addressElement = locationElement.querySelector('.location-address');
+              if (addressElement && addressElement.textContent && 
+                  !addressElement.textContent.includes('Loading') && 
+                  !addressElement.textContent.includes('Error') &&
+                  !addressElement.textContent.includes('detected')) {
+                locationName = addressElement.textContent.trim();
+              }
+            }
+          }
+        } catch (e) {
+          console.log('Could not get location from locationHandler');
+        }
+      }
+      
+      // Method 4: Try to get from cached localStorage
+      if (locationName === 'Your area') {
+        try {
+          const cachedLocation = localStorage.getItem('userLocation');
+          if (cachedLocation) {
+            const parsed = JSON.parse(cachedLocation);
+            if (parsed.address) {
+              locationName = parsed.address;
+            } else if (parsed.district && parsed.state) {
+              locationName = `${parsed.district}, ${parsed.state}`;
+            }
+          }
+        } catch (e) {
+          console.log('Could not get cached location');
+        }
+      }
+      
+      console.log('Final location name:', locationName); // Debug log
+      return locationName;
     }
 
     // Load smart crop recommendations
@@ -2469,17 +2550,27 @@
           }
         }
         
+        // Also try to get location from global window object if available
+        if (!userLocation && typeof window.currentUserLocation !== 'undefined') {
+          userLocation = window.currentUserLocation;
+        }
+        
+        // Get the location name using our comprehensive method
+        const locationName = getUserLocationName();
+        
         // Get weather data
         if (userLocation && userLocation.lat && userLocation.lon) {
           weatherData = await getWeatherData(userLocation.lat, userLocation.lon);
+          // Override location name with our comprehensive method
+          weatherData.location = locationName;
         } else {
-          // Use default weather data for demonstration
+          // Use default weather data for demonstration with actual location if available
           weatherData = {
             temperature: 28,
             humidity: 65,
             rainfall: 80,
             description: 'Partly cloudy',
-            location: 'Your area'
+            location: locationName
           };
         }
         
@@ -2528,8 +2619,20 @@
 
     // Initialize smart recommendations when page loads
     document.addEventListener('DOMContentLoaded', function() {
-      // Delay loading slightly to ensure other scripts are loaded
-      setTimeout(loadSmartRecommendations, 500);
+      // Delay loading to ensure location handler has time to initialize and get location
+      setTimeout(() => {
+        console.log('Starting location detection...'); // Debug log
+        loadSmartRecommendations();
+      }, 2000); // Increased delay to 2 seconds to allow location to be fetched
+      
+      // Also retry after 5 seconds if location is still not available
+      setTimeout(() => {
+        const currentLocationName = getUserLocationName();
+        if (currentLocationName === 'Your area') {
+          console.log('Retrying location detection...'); // Debug log
+          loadSmartRecommendations();
+        }
+      }, 5000);
     });
   </script>
 
