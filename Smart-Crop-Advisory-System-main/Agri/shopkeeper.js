@@ -4,7 +4,8 @@ class DealerFilter {
     this.searchInput = document.getElementById('searchInput');
     this.clearSearch = document.getElementById('clearSearch');
     this.categoryFilter = document.getElementById('categoryFilter');
-    this.locationFilter = document.getElementById('locationFilter');
+    this.stateFilter = document.getElementById('stateFilter');
+    this.districtFilter = document.getElementById('districtFilter');
     this.sortBy = document.getElementById('sortBy');
     this.resetFilters = document.getElementById('resetFilters');
     this.resultsSummary = document.getElementById('resultsSummary');
@@ -15,7 +16,14 @@ class DealerFilter {
     this.sections = document.querySelectorAll('.section');
     
     this.initializeEventListeners();
+    this.initializeDistrictState();
     this.updateResultsCount();
+  }
+
+  initializeDistrictState() {
+    // Disable district dropdown initially
+    this.districtFilter.disabled = true;
+    this.districtFilter.innerHTML = '<option value="all">Select State First</option>';
   }
   
   initializeEventListeners() {
@@ -25,7 +33,8 @@ class DealerFilter {
     
     // Filter controls
     this.categoryFilter.addEventListener('change', () => this.applyFilters());
-    this.locationFilter.addEventListener('change', () => this.applyFilters());
+    this.stateFilter.addEventListener('change', () => this.handleStateChange());
+    this.districtFilter.addEventListener('change', () => this.applyFilters());
     this.sortBy.addEventListener('change', () => this.applySorting());
     this.resetFilters.addEventListener('click', () => this.resetAllFilters());
     
@@ -33,6 +42,225 @@ class DealerFilter {
     this.searchInput.addEventListener('input', () => {
       this.clearSearch.style.display = this.searchInput.value ? 'block' : 'none';
     });
+  }
+  
+  handleStateChange() {
+    const selectedState = this.stateFilter.value;
+    
+    if (selectedState === 'all') {
+      // Reset district filter and disable it
+      this.districtFilter.disabled = true;
+      this.districtFilter.innerHTML = '<option value="all">Select State First</option>';
+      this.districtFilter.value = 'all';
+    } else {
+      // Enable district filter and populate with state-specific districts
+      this.districtFilter.disabled = false;
+      this.updateDistrictOptions();
+    }
+    
+    this.applyFilters();
+  }
+  
+  updateDistrictOptions() {
+    const selectedState = this.stateFilter.value;
+    const districtOptions = this.getDistrictsByState(selectedState);
+    
+    // Clear current district options
+    this.districtFilter.innerHTML = '<option value="all">All Districts</option>';
+    
+    // Add new district options
+    districtOptions.forEach(district => {
+      const option = document.createElement('option');
+      option.value = district.value;
+      option.textContent = district.name;
+      this.districtFilter.appendChild(option);
+    });
+    
+    // Reset district selection to "all"
+    this.districtFilter.value = 'all';
+  }
+  
+  getDistrictsByState(state) {
+    const districtMap = {
+      'punjab': [
+        { value: 'ludhiana', name: 'Ludhiana' },
+        { value: 'amritsar', name: 'Amritsar' },
+        { value: 'fazilka', name: 'Fazilka' },
+        { value: 'sangrur', name: 'Sangrur' },
+        { value: 'bathinda', name: 'Bathinda' },
+        { value: 'jalandhar', name: 'Jalandhar' },
+        { value: 'patiala', name: 'Patiala' },
+        { value: 'gurdaspur', name: 'Gurdaspur' },
+        { value: 'hoshiarpur', name: 'Hoshiarpur' },
+        { value: 'firozpur', name: 'Firozpur' },
+        { value: 'faridkot', name: 'Faridkot' },
+        { value: 'muktsar', name: 'Muktsar' },
+        { value: 'moga', name: 'Moga' },
+        { value: 'kapurthala', name: 'Kapurthala' },
+        { value: 'tarn-taran', name: 'Tarn Taran' },
+        { value: 'barnala', name: 'Barnala' },
+        { value: 'fatehgarh-sahib', name: 'Fatehgarh Sahib' },
+        { value: 'mohali', name: 'Mohali' },
+        { value: 'ropar', name: 'Ropar' },
+        { value: 'pathankot', name: 'Pathankot' },
+        { value: 'mansa', name: 'Mansa' },
+        { value: 'nawanshahr', name: 'Nawanshahr' }
+      ],
+      'haryana': [
+        { value: 'gurgaon', name: 'Gurgaon' },
+        { value: 'faridabad', name: 'Faridabad' },
+        { value: 'panipat', name: 'Panipat' },
+        { value: 'ambala', name: 'Ambala' },
+        { value: 'yamunanagar', name: 'Yamunanagar' },
+        { value: 'rohtak', name: 'Rohtak' },
+        { value: 'hisar', name: 'Hisar' },
+        { value: 'karnal', name: 'Karnal' },
+        { value: 'sonipat', name: 'Sonipat' },
+        { value: 'panchkula', name: 'Panchkula' },
+        { value: 'kurukshetra', name: 'Kurukshetra' },
+        { value: 'sirsa', name: 'Sirsa' }
+      ],
+      'rajasthan': [
+        { value: 'jaipur', name: 'Jaipur' },
+        { value: 'udaipur', name: 'Udaipur' },
+        { value: 'jodhpur', name: 'Jodhpur' },
+        { value: 'kota', name: 'Kota' },
+        { value: 'bikaner', name: 'Bikaner' },
+        { value: 'ajmer', name: 'Ajmer' },
+        { value: 'alwar', name: 'Alwar' },
+        { value: 'bharatpur', name: 'Bharatpur' },
+        { value: 'churu', name: 'Churu' },
+        { value: 'sikar', name: 'Sikar' }
+      ],
+      'uttar-pradesh': [
+        { value: 'lucknow', name: 'Lucknow' },
+        { value: 'kanpur', name: 'Kanpur' },
+        { value: 'ghaziabad', name: 'Ghaziabad' },
+        { value: 'agra', name: 'Agra' },
+        { value: 'meerut', name: 'Meerut' },
+        { value: 'varanasi', name: 'Varanasi' },
+        { value: 'allahabad', name: 'Allahabad' },
+        { value: 'bareilly', name: 'Bareilly' },
+        { value: 'aligarh', name: 'Aligarh' },
+        { value: 'moradabad', name: 'Moradabad' },
+        { value: 'saharanpur', name: 'Saharanpur' },
+        { value: 'gorakhpur', name: 'Gorakhpur' }
+      ],
+      'bihar': [
+        { value: 'patna', name: 'Patna' },
+        { value: 'gaya', name: 'Gaya' },
+        { value: 'bhagalpur', name: 'Bhagalpur' },
+        { value: 'muzaffarpur', name: 'Muzaffarpur' },
+        { value: 'darbhanga', name: 'Darbhanga' },
+        { value: 'purnia', name: 'Purnia' },
+        { value: 'arrah', name: 'Arrah' },
+        { value: 'begusarai', name: 'Begusarai' }
+      ],
+      'west-bengal': [
+        { value: 'kolkata', name: 'Kolkata' },
+        { value: 'howrah', name: 'Howrah' },
+        { value: 'durgapur', name: 'Durgapur' },
+        { value: 'asansol', name: 'Asansol' },
+        { value: 'siliguri', name: 'Siliguri' },
+        { value: 'malda', name: 'Malda' },
+        { value: 'krishnanagar', name: 'Krishnanagar' },
+        { value: 'barrackpur', name: 'Barrackpur' }
+      ],
+      'madhya-pradesh': [
+        { value: 'bhopal', name: 'Bhopal' },
+        { value: 'indore', name: 'Indore' },
+        { value: 'jabalpur', name: 'Jabalpur' },
+        { value: 'gwalior', name: 'Gwalior' },
+        { value: 'ujjain', name: 'Ujjain' },
+        { value: 'sagar', name: 'Sagar' },
+        { value: 'dewas', name: 'Dewas' },
+        { value: 'satna', name: 'Satna' }
+      ],
+      'maharashtra': [
+        { value: 'mumbai', name: 'Mumbai' },
+        { value: 'pune', name: 'Pune' },
+        { value: 'nagpur', name: 'Nagpur' },
+        { value: 'nashik', name: 'Nashik' },
+        { value: 'aurangabad', name: 'Aurangabad' },
+        { value: 'solapur', name: 'Solapur' },
+        { value: 'kolhapur', name: 'Kolhapur' },
+        { value: 'sangli', name: 'Sangli' },
+        { value: 'ahmednagar', name: 'Ahmednagar' },
+        { value: 'latur', name: 'Latur' }
+      ],
+      'karnataka': [
+        { value: 'bangalore', name: 'Bangalore' },
+        { value: 'mysore', name: 'Mysore' },
+        { value: 'hubli', name: 'Hubli' },
+        { value: 'mangalore', name: 'Mangalore' },
+        { value: 'belgaum', name: 'Belgaum' },
+        { value: 'gulbarga', name: 'Gulbarga' },
+        { value: 'davanagere', name: 'Davanagere' },
+        { value: 'bellary', name: 'Bellary' }
+      ],
+      'andhra-pradesh': [
+        { value: 'visakhapatnam', name: 'Visakhapatnam' },
+        { value: 'vijayawada', name: 'Vijayawada' },
+        { value: 'guntur', name: 'Guntur' },
+        { value: 'nellore', name: 'Nellore' },
+        { value: 'kurnool', name: 'Kurnool' },
+        { value: 'rajahmundry', name: 'Rajahmundry' },
+        { value: 'tirupati', name: 'Tirupati' },
+        { value: 'kakinada', name: 'Kakinada' }
+      ],
+      'telangana': [
+        { value: 'hyderabad', name: 'Hyderabad' },
+        { value: 'warangal', name: 'Warangal' },
+        { value: 'nizamabad', name: 'Nizamabad' },
+        { value: 'khammam', name: 'Khammam' },
+        { value: 'karimnagar', name: 'Karimnagar' },
+        { value: 'ramagundam', name: 'Ramagundam' },
+        { value: 'mahbubnagar', name: 'Mahbubnagar' },
+        { value: 'nalgonda', name: 'Nalgonda' }
+      ],
+      'tamil-nadu': [
+        { value: 'chennai', name: 'Chennai' },
+        { value: 'coimbatore', name: 'Coimbatore' },
+        { value: 'madurai', name: 'Madurai' },
+        { value: 'tiruchirappalli', name: 'Tiruchirappalli' },
+        { value: 'salem', name: 'Salem' },
+        { value: 'tirunelveli', name: 'Tirunelveli' },
+        { value: 'erode', name: 'Erode' },
+        { value: 'vellore', name: 'Vellore' }
+      ],
+      'kerala': [
+        { value: 'kochi', name: 'Kochi' },
+        { value: 'thiruvananthapuram', name: 'Thiruvananthapuram' },
+        { value: 'kozhikode', name: 'Kozhikode' },
+        { value: 'thrissur', name: 'Thrissur' },
+        { value: 'kollam', name: 'Kollam' },
+        { value: 'palakkad', name: 'Palakkad' },
+        { value: 'alappuzha', name: 'Alappuzha' },
+        { value: 'malappuram', name: 'Malappuram' }
+      ],
+      'gujarat': [
+        { value: 'ahmedabad', name: 'Ahmedabad' },
+        { value: 'surat', name: 'Surat' },
+        { value: 'vadodara', name: 'Vadodara' },
+        { value: 'rajkot', name: 'Rajkot' },
+        { value: 'bhavnagar', name: 'Bhavnagar' },
+        { value: 'jamnagar', name: 'Jamnagar' },
+        { value: 'junagadh', name: 'Junagadh' },
+        { value: 'gandhinagar', name: 'Gandhinagar' }
+      ],
+      'odisha': [
+        { value: 'bhubaneswar', name: 'Bhubaneswar' },
+        { value: 'cuttack', name: 'Cuttack' },
+        { value: 'rourkela', name: 'Rourkela' },
+        { value: 'berhampur', name: 'Berhampur' },
+        { value: 'sambalpur', name: 'Sambalpur' },
+        { value: 'puri', name: 'Puri' },
+        { value: 'balasore', name: 'Balasore' },
+        { value: 'bhadrak', name: 'Bhadrak' }
+      ]
+    };
+    
+    return districtMap[state] || [];
   }
   
   handleSearch() {
@@ -48,7 +276,8 @@ class DealerFilter {
   applyFilters() {
     const searchTerm = this.searchInput.value.toLowerCase().trim();
     const categoryFilter = this.categoryFilter.value;
-    const locationFilter = this.locationFilter.value;
+    const stateFilter = this.stateFilter.value;
+    const districtFilter = this.districtFilter.value;
     
     let visibleCount = 0;
     
@@ -56,6 +285,8 @@ class DealerFilter {
       const name = card.dataset.name.toLowerCase();
       const location = card.dataset.location.toLowerCase();
       const category = card.dataset.category;
+      const state = card.dataset.state ? card.dataset.state.toLowerCase() : 'punjab';
+      const district = card.dataset.district ? card.dataset.district.toLowerCase() : location;
       const address = card.querySelector('.address').textContent.toLowerCase();
       const services = card.querySelector('.dealer-services span').textContent.toLowerCase();
       
@@ -69,10 +300,15 @@ class DealerFilter {
       // Category filter
       const matchesCategory = categoryFilter === 'all' || category === categoryFilter;
       
-      // Location filter
-      const matchesLocation = locationFilter === 'all' || location.includes(locationFilter);
+      // State filter
+      const matchesState = stateFilter === 'all' || state.includes(stateFilter.replace('-', ' '));
       
-      const isVisible = matchesSearch && matchesCategory && matchesLocation;
+      // District filter
+      const matchesDistrict = districtFilter === 'all' || 
+        district.includes(districtFilter) || 
+        location.includes(districtFilter);
+      
+      const isVisible = matchesSearch && matchesCategory && matchesState && matchesDistrict;
       
       if (isVisible) {
         card.style.display = 'block';
@@ -164,9 +400,15 @@ class DealerFilter {
   resetAllFilters() {
     this.searchInput.value = '';
     this.categoryFilter.value = 'all';
-    this.locationFilter.value = 'all';
+    this.stateFilter.value = 'all';
+    this.districtFilter.value = 'all';
     this.sortBy.value = 'name';
     this.clearSearch.style.display = 'none';
+    
+    // Reset district dropdown state
+    this.districtFilter.disabled = true;
+    this.districtFilter.innerHTML = '<option value="all">Select State First</option>';
+    
     this.applyFilters();
   }
 }

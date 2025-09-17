@@ -4,7 +4,7 @@
     <link rel="icon" type="image/png" href="images/logo.png">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AgriTech - Punjab Dealers Directory</title>
+    <title>KrishiVaani - Agricultural Dealers Directory</title>
     <link rel="icon" type="image/png" href="/AgriTech/images/logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -19,9 +19,9 @@
     <!-- Header -->
     <header class="header">
       <div class="header-content">
-        <h1>Punjab Agricultural Dealers Directory</h1>
+        <h1>KrishiVaani Agricultural Dealers Directory</h1>
         <p class="header-subtitle">
-          Your comprehensive guide to agricultural solutions across Punjab
+          Your comprehensive guide to agricultural solutions across India
         </p>
         <div style="display: flex; gap: 1rem; align-items: center;">
           <button class="theme-toggle" aria-label="Toggle dark/light mode" style="background: rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 255, 255, 0.3); color: white;">
@@ -29,7 +29,7 @@
             <i class="fas fa-moon moon-icon"></i>
             <span class="theme-text">Light</span>
           </button>
-          <a href="index.html" class="back-button"> ← Back to Main </a>
+          <a href="dashboard.html" class="back-button"> ← Back to Dashboard </a>
         </div>
       </div>
     </header>
@@ -66,13 +66,31 @@
           </div>
           
           <div class="filter-group">
-            <label for="locationFilter">Location:</label>
-            <select id="locationFilter" class="filter-select">
-              <option value="all">All Locations</option>
-              <option value="ludhiana">Ludhiana</option>
-              <option value="amritsar">Amritsar</option>
-              <option value="fazilka">Fazilka</option>
-              <option value="sangrur">Sangrur</option>
+            <label for="stateFilter">State:</label>
+            <select id="stateFilter" class="filter-select">
+              <option value="all">All States</option>
+              <option value="punjab">Punjab</option>
+              <option value="haryana">Haryana</option>
+              <option value="rajasthan">Rajasthan</option>
+              <option value="uttar-pradesh">Uttar Pradesh</option>
+              <option value="bihar">Bihar</option>
+              <option value="west-bengal">West Bengal</option>
+              <option value="madhya-pradesh">Madhya Pradesh</option>
+              <option value="maharashtra">Maharashtra</option>
+              <option value="karnataka">Karnataka</option>
+              <option value="andhra-pradesh">Andhra Pradesh</option>
+              <option value="telangana">Telangana</option>
+              <option value="tamil-nadu">Tamil Nadu</option>
+              <option value="kerala">Kerala</option>
+              <option value="gujarat">Gujarat</option>
+              <option value="odisha">Odisha</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label for="districtFilter">District:</label>
+            <select id="districtFilter" class="filter-select" disabled>
+              <option value="all">Select State First</option>
             </select>
           </div>
           
@@ -82,6 +100,8 @@
               <option value="name">Name (A-Z)</option>
               <option value="name-desc">Name (Z-A)</option>
               <option value="location">Location</option>
+              <option value="state">State</option>
+              <option value="district">District</option>
             </select>
           </div>
           
@@ -106,7 +126,7 @@
           </h2>
         </div>
         <div class="dealer-grid">
-          <div class="dealer-card" data-name="M/S Gurukirpa Agro Centre" data-location="ludhiana" data-category="pesticide">
+          <div class="dealer-card" data-name="M/S Gurukirpa Agro Centre" data-location="ludhiana" data-state="punjab" data-district="ludhiana" data-category="pesticide">
             <h3 class="dealer-name">M/S Gurukirpa Agro Centre</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -129,7 +149,7 @@
               </button>
             </div>
           </div>
-          <div class="dealer-card" data-name="M/S Hicon Pest Control" data-location="ludhiana" data-category="pesticide">
+          <div class="dealer-card" data-name="M/S Hicon Pest Control" data-location="ludhiana" data-state="punjab" data-district="ludhiana" data-category="pesticide">
             <h3 class="dealer-name">M/S Hicon Pest Control</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -164,7 +184,7 @@
           </h2>
         </div>
         <div class="dealer-grid">
-          <div class="dealer-card" data-name="Singla Tractors" data-location="fazilka" data-category="tractor">
+          <div class="dealer-card" data-name="Singla Tractors" data-location="fazilka" data-state="punjab" data-district="fazilka" data-category="tractor">
             <h3 class="dealer-name">Singla Tractors</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -187,7 +207,7 @@
               </button>
             </div>
           </div>
-          <div class="dealer-card" data-name="GURKIRPA AUTOS" data-location="sangrur" data-category="tractor">
+          <div class="dealer-card" data-name="GURKIRPA AUTOS" data-location="sangrur" data-state="punjab" data-district="sangrur" data-category="tractor">
             <h3 class="dealer-name">GURKIRPA AUTOS</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -210,7 +230,7 @@
               </button>
             </div>
           </div>
-          <div class="dealer-card" data-name="Majha Agro Traders" data-location="amritsar" data-category="tractor">
+          <div class="dealer-card" data-name="Majha Agro Traders" data-location="amritsar" data-state="punjab" data-district="amritsar" data-category="tractor">
             <h3 class="dealer-name">Majha Agro Traders</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -245,7 +265,7 @@
           </h2>
         </div>
         <div class="dealer-grid">
-          <div class="dealer-card" data-name="Sonalika Samrat Combine Harvester" data-location="ludhiana" data-category="harvester">
+          <div class="dealer-card" data-name="Sonalika Samrat Combine Harvester" data-location="ludhiana" data-state="punjab" data-district="ludhiana" data-category="harvester">
             <h3 class="dealer-name">Sonalika Samrat Combine Harvester</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -268,7 +288,7 @@
               </button>
             </div>
           </div>
-          <div class="dealer-card" data-name="Kartar Agro Industries Pvt. Ltd." data-location="ludhiana" data-category="harvester">
+          <div class="dealer-card" data-name="Kartar Agro Industries Pvt. Ltd." data-location="ludhiana" data-state="punjab" data-district="ludhiana" data-category="harvester">
             <h3 class="dealer-name">Kartar Agro Industries Pvt. Ltd.</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -303,7 +323,7 @@
           </h2>
         </div>
         <div class="dealer-grid">
-          <div class="dealer-card" data-name="Bhajan Singh & Bros" data-location="ludhiana" data-category="equipment">
+          <div class="dealer-card" data-name="Bhajan Singh & Bros" data-location="ludhiana" data-state="punjab" data-district="ludhiana" data-category="equipment">
             <h3 class="dealer-name">Bhajan Singh & Bros</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -326,7 +346,7 @@
               </button>
             </div>
           </div>
-          <div class="dealer-card" data-name="GPN Machine Tools" data-location="ludhiana" data-category="equipment">
+          <div class="dealer-card" data-name="GPN Machine Tools" data-location="ludhiana" data-state="punjab" data-district="ludhiana" data-category="equipment">
             <h3 class="dealer-name">GPN Machine Tools</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -349,7 +369,7 @@
               </button>
             </div>
           </div>
-          <div class="dealer-card" data-name="JRS Farmparts" data-location="ludhiana" data-category="equipment">
+          <div class="dealer-card" data-name="JRS Farmparts" data-location="ludhiana" data-state="punjab" data-district="ludhiana" data-category="equipment">
             <h3 class="dealer-name">JRS Farmparts</h3>
             <div class="dealer-details">
               <div class="dealer-info">
@@ -367,6 +387,383 @@
                 Call Now
               </a>
               <button class="contact-btn secondary" onclick="showDealerDetails('jrs')">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sample dealers from other states -->
+      <section class="section" id="other-states">
+        <div class="section-header">
+          <h2 class="section-title">
+            <i class="fas fa-map-marked-alt section-icon"></i>
+            Multi-State Agricultural Dealers
+          </h2>
+          <p class="section-description">Agricultural dealers across different states</p>
+        </div>
+        
+        <div class="dealers-grid">
+          <!-- Haryana Dealer -->
+          <div class="dealer-card" data-name="Haryana Agro Solutions" data-location="gurgaon" data-state="haryana" data-district="gurgaon" data-category="pesticide">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Haryana Agro Solutions</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Sector 14, Gurgaon, Haryana - 122001
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Pesticide & Fertilizer</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX60" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- UP Dealer -->
+          <div class="dealer-card" data-name="UP Krishi Kendra" data-location="lucknow" data-state="uttar-pradesh" data-district="lucknow" data-category="tractor">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">UP Krishi Kendra</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Gomti Nagar, Lucknow, UP - 226010
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Tractor Leasing & Repair</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX61" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Maharashtra Dealer -->
+          <div class="dealer-card" data-name="Maharashtra Farm Equipment" data-location="pune" data-state="maharashtra" data-district="pune" data-category="harvester">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Maharashtra Farm Equipment</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Shivaji Nagar, Pune, Maharashtra - 411005
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Combine Harvester Rental</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX62" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- West Bengal Dealers -->
+          <div class="dealer-card" data-name="Bengal Agri Solutions" data-location="kolkata" data-state="west-bengal" data-district="kolkata" data-category="pesticide">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Bengal Agri Solutions</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Salt Lake, Kolkata, West Bengal - 700064
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Pesticide & Fertilizer Supply</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX70" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Madhya Pradesh Dealer -->
+          <div class="dealer-card" data-name="MP Krishi Center" data-location="bhopal" data-state="madhya-pradesh" data-district="bhopal" data-category="tractor">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">MP Krishi Center</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  New Market, Bhopal, MP - 462003
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Tractor Sales & Service</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX71" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Karnataka Dealer -->
+          <div class="dealer-card" data-name="Karnataka Farm Equipment" data-location="bangalore" data-state="karnataka" data-district="bangalore" data-category="harvester">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Karnataka Farm Equipment</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Whitefield, Bangalore, Karnataka - 560066
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Combine Harvester Rental</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX72" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Andhra Pradesh Dealer -->
+          <div class="dealer-card" data-name="AP Agro Industries" data-location="visakhapatnam" data-state="andhra-pradesh" data-district="visakhapatnam" data-category="equipment">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">AP Agro Industries</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  MVP Colony, Visakhapatnam, AP - 530017
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Agricultural Equipment</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX73" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Telangana Dealer -->
+          <div class="dealer-card" data-name="Telangana Seed Corp" data-location="hyderabad" data-state="telangana" data-district="hyderabad" data-category="pesticide">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Telangana Seed Corp</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Secunderabad, Hyderabad, Telangana - 500003
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Seeds & Pesticides</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX74" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Tamil Nadu Dealer -->
+          <div class="dealer-card" data-name="Tamil Nadu Farm Tech" data-location="chennai" data-state="tamil-nadu" data-district="chennai" data-category="tractor">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Tamil Nadu Farm Tech</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Anna Nagar, Chennai, Tamil Nadu - 600040
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Tractor Leasing & Repair</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX75" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Kerala Dealer -->
+          <div class="dealer-card" data-name="Kerala Spice Traders" data-location="kochi" data-state="kerala" data-district="kochi" data-category="equipment">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Kerala Spice Traders</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Ernakulam, Kochi, Kerala - 682011
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Spice Processing Equipment</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX76" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Gujarat Dealer -->
+          <div class="dealer-card" data-name="Gujarat Cotton Corp" data-location="ahmedabad" data-state="gujarat" data-district="ahmedabad" data-category="harvester">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Gujarat Cotton Corp</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Satellite, Ahmedabad, Gujarat - 380015
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Cotton Harvesting Equipment</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX77" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Odisha Dealer -->
+          <div class="dealer-card" data-name="Odisha Rice Mills" data-location="bhubaneswar" data-state="odisha" data-district="bhubaneswar" data-category="equipment">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Odisha Rice Mills</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Patia, Bhubaneswar, Odisha - 751024
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Rice Processing Equipment</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX78" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Additional Rajasthan Dealer -->
+          <div class="dealer-card" data-name="Rajasthan Desert Farms" data-location="jaipur" data-state="rajasthan" data-district="jaipur" data-category="pesticide">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Rajasthan Desert Farms</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Malviya Nagar, Jaipur, Rajasthan - 302017
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Desert Agriculture Solutions</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX79" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
+                <i class="fas fa-info-circle"></i>
+                Details
+              </button>
+            </div>
+          </div>
+
+          <!-- Additional Bihar Dealer -->
+          <div class="dealer-card" data-name="Bihar Agri Center" data-location="patna" data-state="bihar" data-district="patna" data-category="tractor">
+            <div class="dealer-header">
+              <div class="dealer-info">
+                <h3 class="dealer-name">Bihar Agri Center</h3>
+                <p class="address">
+                  <i class="fas fa-map-marker-alt"></i>
+                  Boring Road, Patna, Bihar - 800001
+                </p>
+              </div>
+              <div class="dealer-services">
+                <span>Tractor Sales & Service</span>
+              </div>
+            </div>
+            <div class="dealer-contact">
+              <a href="tel:+919XXXXXXX80" class="contact-btn primary">
+                <i class="fas fa-phone"></i>
+                Call Now
+              </a>
+              <button class="contact-btn secondary">
                 <i class="fas fa-info-circle"></i>
                 Details
               </button>
