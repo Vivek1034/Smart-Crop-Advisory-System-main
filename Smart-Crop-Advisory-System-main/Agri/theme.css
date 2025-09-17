@@ -216,6 +216,13 @@ textarea::placeholder {
   color: var(--text-muted);
 }
 
+/* Dark theme specific placeholder styles */
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #4caf50 !important;
+  opacity: 1;
+}
+
 /* Button styles */
 .btn {
   padding: 0.5rem 1rem;

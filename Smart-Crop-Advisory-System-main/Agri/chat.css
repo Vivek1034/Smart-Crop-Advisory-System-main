@@ -123,8 +123,8 @@ main {
 
 .chat-header {
   padding: 1.2rem;
-  background-color: var(--bg-secondary, #e8f5e9);
-  border-bottom: 1px solid #c8e6c9;
+  background-color: #4caf50;
+  border-bottom: 1px solid #388e3c;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -147,7 +147,7 @@ main {
 }
 
 .chat-header i {
-  color: #4caf50;
+  color: #ffffff;
   font-size: 1.4rem;
   animation: pulse 2s ease-in-out infinite;
 }
@@ -164,7 +164,7 @@ main {
 
 .chat-header h2 {
   font-size: 1.3rem;
-  color: #2e7d32;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -301,6 +301,29 @@ main {
 
 #chat-input::placeholder {
   color: var(--text-secondary);
+}
+
+/* Dark theme input text fix */
+[data-theme="dark"] #chat-input {
+  color: #1e293b !important;
+  background: #ffffff !important;
+}
+
+[data-theme="dark"] #chat-input::placeholder {
+  color: #4caf50 !important;
+}
+
+/* Fix input overlay issue in dark theme */
+[data-theme="dark"] .input-container {
+  background: #ffffff !important;
+  position: relative;
+  z-index: 1;
+}
+
+[data-theme="dark"] #chat-input:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 #send-button {
